@@ -10,4 +10,4 @@ Amanti della ricerca e dell'avventura.
 - Gli utenti di uno stesso rango e di una stessa zona hanno la possibilità di sfindarsi nel ritrovamento di TF. 
 - Più il punteggio dell'utente è alto più la sua zona di ricerca si amplia. ([piscio di cane](https://canestrinilex.com/assets/Uploads/blog-pics/7966cdddbb/Cane-che-fa-pipi-su-muro-1.jpg))
 
-link google world per i requisiti: https://docs.google.com/document/d/1Xa-gfQdCArz_bQCFjtppzEY7TgOg7VBdYhZLffM3SBQ/edit?usp=sharing
+link google word per i requisiti: https://docs.google.com/document/d/1Xa-gfQdCArz_bQCFjtppzEY7TgOg7VBdYhZLffM3SBQ/edit?usp=sharing
