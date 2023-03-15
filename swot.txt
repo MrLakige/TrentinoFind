@@ -2,28 +2,18 @@ Dominio applicatvo
     - Turismo
 
 Obiettivi:
-- Attivita sportiva al aperto
-- Valorizazzzione del territiorio
-- Economia-circolare
-- Green-washing
-- Presenza sul territorio     
+- Valorizazzzione e presenza sul territiorio
+- Economia-circolare: economia green. 
 - Offrire un gioco a livelli agli utenti
-- Interazione tra utenti e possibilità di messagistica
-- Creazione di gruppi di interesse
-- Creazione di giochi a tappe per utenti
-- Creazioni di eventi a temi ai quali bisogna fare una join
-- Collaborazione con il comune di trento e con gli eventi
-- Incentivare il turismo trentino
+    - Creazione di giochi a tappe per utenti
+    - Creazioni di eventi a temi ai quali bisogna fare una join
+    - Collaborazione con il comune di Trento e con gli eventi
+    - Incentivare il turismo trentino
 - Promuovere l'attività fisica all'aperto
-- Creazione di una community
-- Aumentare la consapevolezza della bellezza trentina
-- Aiutare il turista nella creazione di un itinerario
-- Scoperta autonoma di nuovi punti di interesse/luoghi
+    - Aiutare il turista nella creazione di un itinerario
+    - Scoperta autonoma di nuovi punti di interesse/luoghi
 - Sviluppo delle abilità di ricerca degli oggetti nascosti.
-- Incrementare la curiosità nel territorio trentino
-- conoscenza del territorio: tramite check point messi in giro al territorio
-- pubblicità a luoghi turistici: invogliano le persone a visitare il territorio
-- attività fisica: muoversi fa bene alla salute
+
 - rendere il turismo divertente
 - migliorare l'econima in maniera indiretta: aumentare la vendita dei suvernir
 
