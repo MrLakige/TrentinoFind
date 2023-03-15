@@ -1,8 +1,26 @@
 Dominio applicatvo
-    - "Gioco turistico"/"Turist gamification"
-    
+    - Turismo
+
+Obiettivi:
+
+
+
 
 1)  Punti di forza
+        - Siamo bravi studenti a cui piace l'ambiente ed il fitness
+        - cosa facciamo bene? l'integrazione con il nostro territorio 
+        - capacità di far conoscere il territorio del trentino alle persone
+        - utile per la gamification del turismo
+        - app adatta a tutte le persone amanti dell'avventura
+        - attività fisica all'aria aperta
 2)  Opportunità
+        - app di nicchia 
+        - limitata al territorio in cui implementata
+        - lo sviluppo al lungo termine potrebbe essere non banale
 3)  Debolezze
+        - collaborazione con le aziende locali  
+
 4)  Minacce
+        - app come geocaching 
+        - app protrebbe essere di nicchia 
+        - i qr messi nelle proprietà private potrebbero causare problemi legali (violazione di proprietà privata)
