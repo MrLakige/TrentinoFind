@@ -2,17 +2,15 @@ Dominio applicatvo
     - Turismo
 
 Obiettivi:
-- Valorizazzzione e presenza sul territiorio
+- Valorizzazione e presenza sul territiorio
 - Economia-circolare: economia green. 
-- Offrire un gioco a livelli agli utenti
-    - Creazione di giochi a tappe per utenti
-    - Creazioni di eventi a temi ai quali bisogna fare una join
-    - Collaborazione con il comune di Trento e con gli eventi
+- Fornire un'esperienza interattiva di gioco all'utente
+    - Sviluppo di una consapevolezza del territorio trentino
     - Incentivare il turismo trentino
 - Promuovere l'attività fisica all'aperto
     - Aiutare il turista nella creazione di un itinerario
     - Scoperta autonoma di nuovi punti di interesse/luoghi
-- Sviluppo delle abilità di ricerca degli oggetti nascosti.
+- Sviluppo delle abilità di orientamento.
 
 - rendere il turismo divertente
 
