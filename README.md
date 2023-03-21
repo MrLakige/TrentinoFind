@@ -3,7 +3,7 @@
 Amanti della ricerca e dell'avventura.
 
 ## Requisiti
-- L'utente deve essere in grado di visualizzare una mappa dell'ambiante circostante.
+- L'utente deve essere in grado di visualizzare una mappa dell'ambiante circostante. 
 - L'utente deve avere la possibilità di segnalare il ritrovamento di un TF.
 - All'utente vengono assegnati dei punti per ogni ritrovamento.
 - L'utente in base ai punti ottenuti riceve dei badge che rappresentano il suo rango.
