@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" modified="2023-04-02T17:28:33.332Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="QF4vG71shp7NNik5UeIn" version="21.1.2" type="device">
+  <diagram name="Pagina-1" id="mdnEE3dduQ75di94VMBc">
+    <mxGraphModel dx="794" dy="381" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="oXrQMiTurnPw4JAMrkJM-1" target="oXrQMiTurnPw4JAMrkJM-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-10" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oXrQMiTurnPw4JAMrkJM-1" target="oXrQMiTurnPw4JAMrkJM-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-1" value="Giocatore" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="130" y="70" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oXrQMiTurnPw4JAMrkJM-2" target="oXrQMiTurnPw4JAMrkJM-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-2" value="Game engine" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="130" y="255" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-4" value="Visualizzazione livello esperienza" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="30" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-5" value="Sfida giocatore" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-6" value="Visualizza posizione luoghi di interesse" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="140" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-8" value="Aggiornamento livello interesse giocatore" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="250" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="oXrQMiTurnPw4JAMrkJM-12" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oXrQMiTurnPw4JAMrkJM-5" target="oXrQMiTurnPw4JAMrkJM-6">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="440" y="260" as="sourcePoint" />
+            <mxPoint x="600" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
