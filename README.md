@@ -12,4 +12,6 @@ Amanti della ricerca e dell'avventura.
 
 link google word per i requisiti: https://docs.google.com/document/d/1Xa-gfQdCArz_bQCFjtppzEY7TgOg7VBdYhZLffM3SBQ/edit?usp=sharing
 
-link google world per il secondo assignment: https://docs.google.com/document/d/10zod6d3k0mADGLSaxW5D-Os-5Kl1PVzhuN622pBqMIw/edit
+link google world per il secondo assignment: <br>
+component diagram: https://docs.google.com/document/d/10zod6d3k0mADGLSaxW5D-Os-5Kl1PVzhuN622pBqMIw/edit <br>
+class diagram: https://docs.google.com/document/d/1bXJLALiqI4HMSc6jwd21-lz2Ah3MYBvaE2VIVKDtOP4/edit?usp=sharing <br>
