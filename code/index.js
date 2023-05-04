@@ -1,41 +1,20 @@
+const app = require('./lib/app.js');
+const mongoose = require('mongoose');
 
-var mongodb = require('./lib/database/dbms.js');
-
-// method with express
-var express = require('express');
-var app = express();
-var port = 3000;
-
-app.get('/', function(req, res){
-    res.send('GET request');
-});
-
-app.post('/', function(req, res){
-    res.send('POST request');
-});
-
-app.put('/user', function(req, res){
-    res.send('PUT request');
-});
-
-app.delete('/user', function(req, res){
-    res.send('DELETE request');
-});
-
-app.get('/hello', function(req, res){
-    res.send('Hello world!');
-});
+const port= process.env.PORT || 8080;
 
 
-res.get('/login', function(req, res){
-    
-});
+//app.locals.db = mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 
-app.get('/logout', function(req, res){
-    
-});
+const username = '2LM';
+mongoose.connect('mongodb+srv://2LM:passwordditest@trentinofind.x1ubooa.mongodb.net/?retryWrites=true&w=majority')
+.then ( () => {
+        
+        console.log("Connected to Database");
+        
+        app.listen(port, () => {
+            console.log(`Server listening on port ${port}`);
+        });
+        
+    });
 
-
-app.listen(port, function() {
-    console.log('Server running on port ', 3000);
-});
