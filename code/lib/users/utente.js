@@ -1,5 +1,4 @@
 // super classe utente
-
 class Utente{
     constructor(firstname, lastname, age, passwordHash, email, phone){
         this.firstname = firstname;

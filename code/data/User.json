@@ -1,0 +1,28 @@
+{
+    "firstname": "Marco",
+    "lastname": "Marchettino",
+    "age": 35,
+    "passwordHash": "qwsdrfcvhujnbvf",
+    "email": "prova@gmail.com",
+    "phone": "3278956826",
+    "type": "giocatore"
+}
+{
+    "firstname": "Antonina",
+    "lastname": "Cannovaccia",
+    "age": 89,
+    "passwordHash": "qrewdgyujiog",
+    "email": "rsa_trento@gmail.com",
+    "phone": "0412 558987522",
+    "type": "moderatore"
+}
+
+{
+    "firstname": "Elena",
+    "lastname": "Verdi",
+    "age": 25,
+    "passwordHash": "wertyuiokhbv",
+    "email": "test@gmail.com",
+    "phone": "34521578945",
+    "type": "amministratore"
+}
