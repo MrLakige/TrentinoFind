@@ -1,14 +1,23 @@
+const { query } = require('express');
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
 const UtenteSchema = new Schema({
-    id: Int,
-    fistname: String, // String is shorthand for {type: String}
+    id: Number,
+    fistname: String,
     lastname: String,
     age: Number,
     passwordHash: String,
     email: String,
     phone: Number,
     type: String
-});
+    },{
+    query: {
+        byName(name){
+            return this.where({name: new RegExp(name, 'i')});
+        }
+    }
+    });
+
+
