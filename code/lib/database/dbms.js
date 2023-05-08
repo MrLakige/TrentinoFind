@@ -12,20 +12,35 @@ const client = new MongoClient(uri, {
   }
 });
 
-async function run() {
-  try {
+const database = client.db("TrentinoFind");
+const user = database.collection("User");
 
+
+async function connection(){
+  try {
     // Connect the client to the server
     await client.connect();
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Database connected");
-    
-    const database = client.db("TrentinoFind");
-    const user = database.collection("User");
+    // return 0;
+  } catch (err) {
+    console.error(err);
+    // return -1;
+  }
+}
 
+async function insert(){
+
+}
+
+async function searchOne(){
+
+}
+
+async function search(){
+    try {
     const query = {firstname:"Marco"};
-
     const options = {
       sort: { "name": -1 },
       // Include only the `name` and `lastname` fields in the returned document
@@ -34,7 +49,22 @@ async function run() {
 
     const result= await user.findOne(query, options);
     console.log(result);
+    //return result
 
+    } catch (err) {
+      console.error(err);
+      // return -1;
+    }
+}
+
+async function run() {
+  try {
+    connection();
+    search();
+    // return cose
+  }catch(err){
+    console.error(err);
+    // return -1;
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
