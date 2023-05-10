@@ -34,6 +34,11 @@ app.use("/",(req, res) => {
     //res.json({ error: 'Not found' });
 });
 
+// return css file
+app.use('/css/stile.css',(req, res)=>{
+    res.sendFile(path.join(__dirname, '../view/css/stile.css'));
+});
+
 
 // Default 404 handler 
 app.use((req, res) => {
