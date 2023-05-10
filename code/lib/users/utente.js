@@ -8,6 +8,7 @@ class Utente{
         this.email = email;
         this.phone = phone;
     }
+
     getfirstname(){
         return this.firstname;
     }

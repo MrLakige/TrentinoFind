@@ -4,6 +4,8 @@ const port= process.env.PORT || 8080;
 
 db.start;
 
+const client = db.getClient();
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 }); 

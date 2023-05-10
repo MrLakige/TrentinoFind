@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const user = new mongoose.Schema({
+exports.user = new mongoose.Schema({
     fistname: String,
     lastname:String,
     age: Number,
