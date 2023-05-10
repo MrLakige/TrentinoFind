@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 exports.user = new mongoose.Schema({
     location: String,
-    firstname: String,
-    lastname:String,   
-    age: Number,
-    passwordHash: String,
+    idObject: String,
+    description:String,   
+    validated: Boolean,
+    comments: String,
     phone: String,
     type: String,
 });
