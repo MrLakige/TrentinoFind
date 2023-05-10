@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 exports.user = new mongoose.Schema({
-    location: Uint
+    location: Uin
     firstname: String,
     lastname:String,   
     age: Number,
