@@ -30,7 +30,7 @@ app.use((req,res,next) => {
 // return home page
 app.use("/",(req, res) => {
     res.status(200);
-    res.sendFile(path.join(__dirname, '/view/html/home.html'));
+    res.sendFile(path.join(__dirname, '../view/html/home.html'));
     //res.json({ error: 'Not found' });
 });
 
