@@ -1,6 +1,10 @@
 /// routing api page
 
+// requires
 const express = require('express');
+const home = require('../view/html/home.html');
+ 
+
 const app = express();
 
 
@@ -24,10 +28,10 @@ app.use((req,res,next) => {
 
 //app.use('/api/v1/utente', utente);
 
-
+// return home page
 app.use("/",(req, res) => {
     res.status(200);
-    res.send("TrentinoFind home page")
+    res.send(home);
     //res.json({ error: 'Not found' });
 });
 
