@@ -36,11 +36,17 @@ app.use("/view/css/stile.css",(req, res)=>{
 });
 
 // return home page
+app.use("/home",(req, res) => {
+    res.status(200);
+    console.log("send home page");
+    res.sendFile(path.join(__dirname, '../view/html/home.html'));
+});
+
+// return home page as default
 app.use("/",(req, res) => {
     res.status(200);
     console.log("send home page");
     res.sendFile(path.join(__dirname, '../view/html/home.html'));
-    //res.json({ error: 'Not found' });
 });
 
 
