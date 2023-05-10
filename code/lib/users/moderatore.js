@@ -1,4 +1,4 @@
-const { user } = require("../schemas/User");
+const { user } = require("../schemas/schemaUtente");
 
 class Moderatore extends user{
     constructor(firstname, lastname, age, passwordHash, email, phone){
