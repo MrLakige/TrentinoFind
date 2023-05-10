@@ -27,18 +27,20 @@ app.use((req,res,next) => {
 
 //app.use('/api/v1/utente', utente);
 
+
+
+// return css file
+app.use("/view/css/stile.css",(req, res)=>{
+    console.log("send css file");
+    res.sendFile(path.join(__dirname, '../view/css/stile.css'));
+});
+
 // return home page
 app.use("/",(req, res) => {
     res.status(200);
     console.log("send home page");
     res.sendFile(path.join(__dirname, '../view/html/home.html'));
     //res.json({ error: 'Not found' });
-});
-
-// return css file
-app.use('/view/css/stile.css',(req, res)=>{
-    console.log("send css file");
-    res.sendFile(path.join(__dirname, '../view/css/stile.css'));
 });
 
 
