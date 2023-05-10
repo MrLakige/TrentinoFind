@@ -2,6 +2,7 @@
 
 // requires
 const express = require('express');
+const fs = require('fs');
 const home = require('../view/html/home.html');
  
 
@@ -31,7 +32,13 @@ app.use((req,res,next) => {
 // return home page
 app.use("/",(req, res) => {
     res.status(200);
-    res.sendFile(home);
+    fs.readFile('/view/html/home.html', (err, data) => {
+        if (err) {
+            next(err) // Pass errors to Express.
+        } else {
+            res.send(data)
+        }
+    });
     //res.json({ error: 'Not found' });
 });
 
