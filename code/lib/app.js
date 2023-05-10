@@ -31,7 +31,7 @@ app.use((req,res,next) => {
 // return home page
 app.use("/",(req, res) => {
     res.status(200);
-    res.send(home);
+    res.sendFile(home);
     //res.json({ error: 'Not found' });
 });
 
