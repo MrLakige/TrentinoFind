@@ -25,6 +25,11 @@ app.use((req,res,next) => {
 //app.use('/api/v1/utente', utente);
 
 
+app.use("/",(req, res) => {
+    res.status(200);
+    res.send("TrentinoFind home page")
+    //res.json({ error: 'Not found' });
+});
 
 
 // Default 404 handler 
