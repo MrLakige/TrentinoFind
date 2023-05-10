@@ -8,11 +8,11 @@ const home = require('../view/html/home.html');
 
 const app = express();
 
-
+/*
 // parsing middelware json file
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+*/
 
 
 
