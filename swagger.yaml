@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: '1.0'
-  title: "Trentino Find OpenAPI 3.0"
+  title: "Trentino Find OpenAPI"
   description: API for managing book lendings.
   license:
     name: MIT
@@ -9,30 +9,46 @@ servers:
   - url: http://localhost:8000/api/v1
     description: Localhost
 paths:
-  /students:
+  /giocatori:
     post:
+      tags:
+        - giocatore
       description: >-
-        Creates a new student in the system.
-      summary: Register a new student
+        Crea un nuovo giocatore all'interno del sistema.
+      summary: Crea un nuovo giocatore.
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - email
-              properties:
-                email:
-                  type: string
-                  description: 'Email address of the student'
+              $ref: '#/components/schemas/Giocatore'
+        required: true
       responses:
-        '201':
-          description: 'User created. Link in the Location header'
-          headers:
-            'Location':
+        '200':
+          description: Successful operation
+          content:
+            application/json:
               schema:
-                type: string
-              description: Link to the newly created student.
+                $ref: '#/components/schemas/Giocatore'
+        '405':
+          description: Invalid input
+          
+  /giocatori/{ID}:
+    put:
+      tags:
+        - giocatore
+      description: >-
+        Aggiorna i dati forniti in fase di un giocatore all'interno del sistema.
+      summary: Crea un nuovo giocatore.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Giocatore'
+      responses:
+        '200':
+          description: Successful operation
+        '405':
+          description: Invalid input
 
   /books:
     get:
@@ -69,18 +85,31 @@ paths:
           
 components:
   schemas:
-    Student:
+    Giocatore:
       type: object
       required:
-        - id
         - email
+        - firstname
+        - lastname
+        - age
+        - phone
       properties:
-        id:
-          type: integer
-          description: 'ID of the user'
-        email:
+       email:
           type: string
-          description: 'Email address of the user'
+          description: 'Indirizzo email del giocatore'
+       firstname: 
+          type: string
+          description: 'Nome del giocatore'
+       lastname: 
+          type: string
+          description: 'Cognome del giocatore'
+       age: 
+          type: string
+          description: 'Età del giocatore'
+       phone: 
+          type: string
+          description: 'Numero di telefono del giocatore'
+
     Book:
       type: object
       required:
