@@ -36,7 +36,7 @@ app.use("/",(req, res) => {
 });
 
 // return css file
-app.use('/css/stile.css',(req, res)=>{
+app.use('./view/css/stile.css',(req, res)=>{
     console.log("send css file");
     res.sendFile(path.join(__dirname, '../view/css/stile.css'));
 });
