@@ -27,7 +27,15 @@ app.use((req,res,next) => {
 
 //app.use('/api/v1/utente', utente);
 
+app.use("/api/v1/giocatore",(req, res)=>{});
 
+//per la classe giocatore
+/*
+app.get("/api/v1/giocatore/{id}", (req, res))
+app.put("/api/v1/giocatore/{id}")
+app.delete("/api/v1/giocatore/{id}")
+app.set("/api/v1/giocatore")
+*/
 
 // return css file
 app.get("/view/css/stile.css",(req, res)=>{
@@ -44,7 +52,7 @@ app.get("/home",(req, res) => {
 });
 
 // return home page as default
-app.get("/",(req, res) => {
+app.use("/",(req, res) => {
     res.status(200);
     console.log("send home page");
     res.sendFile(path.join(__dirname, '../view/html/home.html'));

@@ -1,6 +1,7 @@
 // file che contine la gestione delle iterazione del database
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
+// connnessione al db tramite link 
 const uri = "mongodb+srv://2LM:passwordditest@trentinofind.x1ubooa.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version

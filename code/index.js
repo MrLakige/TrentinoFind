@@ -42,7 +42,7 @@ mongoose.connect('mongodb+srv://2LM:passwordditest@trentinofind.x1ubooa.mongodb.
     }); 
 
     user.create({ 
-        name: "Marco",
+        firstname: "Marco",
         lastname: "Marchettino",
         age: 35,
         passwordHash: "qwsdrfcvhujnbvf",
