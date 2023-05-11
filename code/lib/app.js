@@ -30,20 +30,21 @@ app.use((req,res,next) => {
 
 
 // return css file
-app.use("/view/css/stile.css",(req, res)=>{
+app.get("/view/css/stile.css",(req, res)=>{
     console.log("send css file");
     res.sendFile(path.join(__dirname, '../view/css/stile.css'));
 });
 
+
 // return home page
-app.use("/home",(req, res) => {
+app.get("/home",(req, res) => {
     res.status(200);
     console.log("send home page");
     res.sendFile(path.join(__dirname, '../view/html/home.html'));
 });
 
 // return home page as default
-app.use("/",(req, res) => {
+app.get("/",(req, res) => {
     res.status(200);
     console.log("send home page");
     res.sendFile(path.join(__dirname, '../view/html/home.html'));
