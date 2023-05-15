@@ -14,6 +14,9 @@ class Giocatore extends user{
 //POST /api/v1/giocatori
 router.post('', async (req, res) => {
 
+    console.log(req.body);
+    
+    // let giocatore = new Giocatore(req.body); //EQUIVALENTE
 	let giocatore = new Giocatore({
         email: req.body.email,
         firstname: req.body.firstname,
@@ -32,6 +35,20 @@ router.post('', async (req, res) => {
      * sul path /api/v1/giocatori/{ID}
      */
     res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
+});
+
+//GET /api/v1/giocatori/{ID}
+router.get('/:id', async (req, res) => {
+    // https://mongoosejs.com/docs/api.html#model_Model.findById
+    let giocatore = await Giocatore.findById(req.params.id);
+    res.status(200).json(giocatore)
+});
+
+//PUT /api/v1/giocatori/{ID}
+router.put('/:id', async (req, res) => {
+    // https://mongoosejs.com/docs/api.html#model_Model.findById
+    let giocatore = await Giocatore.findById(req.params.id);
+    res.status(200).json(giocatore)
 });
 
 module.exports = router;
