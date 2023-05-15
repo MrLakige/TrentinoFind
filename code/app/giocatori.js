@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Giocatore = require('./models/schemaGiocatore'); // get our mongoose model
 
-const { user } = require("../schemas/schemaUtente");
-
+//const { user } = require("../schemas/schemaUtente");
+/*
 class Giocatore extends user{
     constructor(firstname, lastname, age, passwordHash, email, phone){
         super(firstname, lastname, age, passwordHash, email, phone);
     }
-}
+}*/
 
+//Routing rispetto il path '/api/v1/giocatori' 
 router.get('', function(req, res){
     res.send('Richiesta get di /api/v1/giocatori');
 });
@@ -19,7 +20,11 @@ router.post('', async (req, res) => {
     res.send('Richiesta post di /api/v1/giocatori');
 
 	let giocatore = new Giocatore({
-        title: req.body.title //Questo parametro ci arriva dall richiesta http
+        email: req.body.email,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        age: req.body.age,
+        phone: req.body.phone
     });
     
 	giocatore = await giocatore.save();
