@@ -1,14 +1,12 @@
 // super classe utente
 class Utente{
-    constructor(firstname, lastname, age, passwordHash, email, phone){
+    constructor(email, firstname, lastname, age, phone){
+        this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
-        this.passwordHash = passwordHash;
-        this.email = email;
         this.phone = phone;
     }
-
     getfirstname(){
         return this.firstname;
     }

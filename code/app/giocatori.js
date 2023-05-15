@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Giocatore = require('./models/schemaGiocatore'); // get our mongoose model
 
-//const { user } = require("../schemas/schemaUtente");
+//const { Utente } = require("../schemas/schemaUtente");
 /*
-class Giocatore extends user{
-    constructor(firstname, lastname, age, passwordHash, email, phone){
-        super(firstname, lastname, age, passwordHash, email, phone);
+class Giocatore extends Utente{
+    constructor(email, firstname, lastname, age, phone){
+        super(email, firstname, lastname, age, phone);
     }
 }*/
 
