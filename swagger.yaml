@@ -1,12 +1,13 @@
 openapi: 3.0.0
 info:
-  version: '1.0'
+  version: 1.0.0
   title: "Trentino Find OpenAPI"
-  description: API for managing book lendings.
-  license:
-    name: MIT
+  description: API per Trentino find.
 servers:
-  - url: http://localhost:8080/api/v1
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/LUCACACCAVALE/TrentinoFind/1.0.0
+  - url: http://localhost:8000/api/v1
     description: Localhost
 paths:
   /giocatori:
@@ -23,22 +24,31 @@ paths:
               $ref: '#/components/schemas/Giocatore'
         required: true
       responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
+        '201':
+          description: 'Giocatore creato. Link nel Location header'
+          headers:
+            'Location':
               schema:
-                $ref: '#/components/schemas/Giocatore'
+                type: string
+              description: Link al nuovo giocatore creato
         '405':
           description: Invalid input
-          
+  
   /giocatori/{ID}:
     put:
       tags:
         - giocatore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del giocatore da modificare
+          required: true
+          schema:
+            type: integer
+            format: int64
       description: >-
-        Aggiorna i dati forniti in fase di un giocatore all'interno del sistema.
-      summary: Crea un nuovo giocatore.
+        Aggiorna un giocatore all'interno del sistema.
+      summary: Aggiorna un giocatore.
       requestBody:
         content:
           application/json:
@@ -49,40 +59,30 @@ paths:
           description: Successful operation
         '405':
           description: Invalid input
-
-  /books:
     get:
+      tags:
+        - giocatore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del giocatore da visualizzare
+          required: true
+          schema:
+            type: integer
+            format: int64
       description: >-
-        Gets the list of books.
-      summary: View all books
+        Ottiene le informazioni personali di un giocatore all'interno del sistema.
+      summary: Visualizza informazioni personali di un giocatore.
       responses:
         '200':
-          description: 'Collection of books'
+          description: Successful operation
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
-  /booklendings:
-    post:
-      description: >-
-        Creates a new booklending.
-      summary: Borrow a book
-      responses:
-        '201':
-          description: 'Booklending created. Link in the Location header'
-          headers:
-            'Location':
-              schema:
-                type: string
-              description: Link to the newly created booklending.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Booklending'
-          
+                $ref: '#/components/schemas/Giocatore'
+        '405':
+          description: Invalid input
+
 components:
   schemas:
     Giocatore:
@@ -109,37 +109,3 @@ components:
        phone: 
           type: string
           description: 'Numero di telefono del giocatore'
-
-    Book:
-      type: object
-      required:
-        - title
-        - author
-        - ISBN
-        - status
-      properties:
-        title:
-          type: string
-          description: 'Title of the book'
-        author:
-          type: string
-          description: 'Author of the book'
-        ISBN:
-          type: string
-          description: 'ISBN of the book'
-        status:
-          type: string
-          enum: [available, lended]
-          description: 'Tells whether the book is currently available or not'
-    Booklending:
-      type: object
-      required:
-      - student
-      - book
-      properties:
-        user:
-          type: string
-          description: 'Link to the user'
-        book:
-          type: integer
-          description: 'Link to the book'
