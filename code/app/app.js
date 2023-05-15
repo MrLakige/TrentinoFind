@@ -21,14 +21,10 @@ app.use((req,res,next) => {
     next()
 })
 
-
-
 // Default 404 handler 
 app.use((req, res) => {
     res.status(404);
     res.json({ error: 'Not found' });
 });
-
-
 
 module.exports = app;
