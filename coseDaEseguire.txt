@@ -1,9 +1,0 @@
-DB credenziali di accesso: 
-    username: lucacaccavale
-    password: TrentinoFindPassword
-    
-git init
-npm init
-npm install express
-npm install mongodb
-npm install moongoose
