@@ -1,4 +1,4 @@
-const { user } = require("../schemas/schemaUtente");
+const { user } = require("./schemaUtente");
 
 class Giocatore extends user{
     constructor(firstname, lastname, age, passwordHash, email, phone){

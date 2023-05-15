@@ -1,10 +1,9 @@
-const { user } = require("./schemaUtente");
+const { user } = require("../schemas/schemaUtente");
 
-class Moderatore extends user{
+class Giocatore extends user{
     constructor(firstname, lastname, age, passwordHash, email, phone){
         super(firstname, lastname, age, passwordHash, email, phone);
     }
-
 }
 
-module.exports = Moderatore;
+module.exports = Giocatore;
