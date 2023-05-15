@@ -10,14 +10,9 @@ class Giocatore extends user{
     }
 }*/
 
-//Routing rispetto il path '/api/v1/giocatori' 
-router.get('', function(req, res){
-    res.send('Richiesta get di /api/v1/giocatori');
-});
 
-
+//POST /api/v1/giocatori
 router.post('', async (req, res) => {
-    res.send('Richiesta post di /api/v1/giocatori');
 
 	let giocatore = new Giocatore({
         email: req.body.email,
@@ -28,50 +23,15 @@ router.post('', async (req, res) => {
     });
     
 	giocatore = await giocatore.save();
-    console.log('Prova 1');
     let giocatoreId = giocatore.id;
 
     console.log('Giocatore saved successfully');
-
     /**
-     * Link to the newly created resource is returned in the Location header
-     * https://www.restapitutorial.com/lessons/httpmethods.html
+     * La chiamata seguente permette di inviare al client l'id che è generato da 
+     * MongoDb, e che permette poi di utilizzare tale id per fare richieste
+     * sul path /api/v1/giocatori/{ID}
      */
-    //res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
+    res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
 });
-
 
 module.exports = router;
-
-
-
-router.get('', function(req, res){
-    res.send('Richiesta get di /api/v1/giocatori');
-});
-
-
-router.post('', async (req, res) => {
-    res.send('Richiesta post di /api/v1/giocatori');
-
-	let giocatore = new Giocatore({
-        title: req.body.title //Questo parametro ci arriva dall richiesta http
-    });
-    
-	giocatore = await giocatore.save();
-    console.log('Prova 1');
-    let giocatoreId = giocatore.id;
-
-    console.log('Giocatore saved successfully');
-
-    /**
-     * Link to the newly created resource is returned in the Location header
-     * https://www.restapitutorial.com/lessons/httpmethods.html
-     */
-    //res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
-});
-
-
-module.exports = router;
-
-
-module.exports = Giocatore;
