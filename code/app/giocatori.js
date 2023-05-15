@@ -47,7 +47,8 @@ router.get('/:id', async (req, res) => {
 //PUT /api/v1/giocatori/{ID}
 router.put('/:id', async (req, res) => {
     // https://mongoosejs.com/docs/api.html#model_Model.findById
-    let giocatore = await Giocatore.findById(req.params.id);
+    let giocatore = await Giocatore.findByIdAndUpdate(req.params.id, req.body);
+    giocatore = await Giocatore.findById(req.params.id);
     res.status(200).json(giocatore)
 });
 
