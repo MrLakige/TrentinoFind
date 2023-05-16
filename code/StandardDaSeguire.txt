@@ -1,5 +1,5 @@
         In questo file di testo scrivo le convenzioni adottate per denominare
-        le variabile del sistema cosi da avere una strategia comune di implementazione.
+        le variabile utilizzate cosi da avere una strategia comune e chiara di denominazione.
 
 schemaGiocatore: 
     per identificare l'oggetto che rappresenta lo schema del giocatore
@@ -22,17 +22,16 @@ Giocatore:
 
 Come si relazionano tra di loro gObject e giocatoreDB?
 
-    gObject istanza delle classe Giocatore
-
-    giocatoreDB istanza delle classe modelloGiocatore
+    1) gObject istanza delle classe Giocatore
+    2) giocatoreDB istanza delle classe modelloGiocatore
 
 gObject è un oggetto che utilizziamo come oggetto intermedio dove
 salvare le informazioni ad esempio di una richiesta HTTP verso 
-un giocatore.
+un path come /api/v1/giocatori .
 
-i metodi della classe Giocatore, permettono di fare eventuali operazioni
-su un oggetto di tipo Giocatore prima che questo possa interagire con il 
-Database.
+I metodi della classe Giocatore, permettono di fare eventuali operazioni
+intermedie su un oggetto di tipo Giocatore, che costituirà poi una eventuale
+bozza per quanto riguarda l'effettiva interazione con il Database.
 
 
                 
