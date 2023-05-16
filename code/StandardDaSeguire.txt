@@ -1,0 +1,38 @@
+        In questo file di testo scrivo le convenzioni adottate per denominare
+        le variabile del sistema cosi da avere una strategia comune di implementazione.
+
+schemaGiocatore: 
+    per identificare l'oggetto che rappresenta lo schema del giocatore
+
+modelloGiocatore: 
+    per identificare la classe che permette l'interazione con la collezione
+    del nostro Database; verrà utilizzato per creare la "bozza"
+    di un documento di tipo giocatore, che successivamente verrà salvata
+    all'interno del DB.
+    Ad esempio:
+
+            let giocatoreDB = new modelloGiocatore(gObject);
+            //Poi avviene il salvataggio all'interno del sistema
+            giocatoreDB = await giocatoreDB.save();
+
+Giocatore:
+    per identificare la classe di tipo Giocatore, un oggetto di
+    questa classe lo chiamo:
+        gObject
+
+Come si relazionano tra di loro gObject e giocatoreDB?
+
+    gObject istanza delle classe Giocatore
+
+    giocatoreDB istanza delle classe modelloGiocatore
+
+gObject è un oggetto che utilizziamo come oggetto intermedio dove
+salvare le informazioni ad esempio di una richiesta HTTP verso 
+un giocatore.
+
+i metodi della classe Giocatore, permettono di fare eventuali operazioni
+su un oggetto di tipo Giocatore prima che questo possa interagire con il 
+Database.
+
+
+                
