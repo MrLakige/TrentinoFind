@@ -17,28 +17,23 @@ router.post('', async (req, res) => {
 
     let gObject = new Giocatore(req.body.email, req.body.firstname, 
         req.body.lastname, req.body.age, req.body.phone);
+    
     console.log(gObject);
 
-    //Logica di correttezza dati inseriti in fase di registrazione
-    if (!gObject.verificaRiempimentoCampi){
-        return res.status(400).send({
-            message: "Alcuni campi mancano"
-        })
-    }
- 
-    const {valid, reason, validators} = await gObject.verificaEmail();
-    if (valid){ 
+    const {isValid, errorMessage } = await gObject.verificaRegistrazione();
+
+    if (isValid){ 
         let giocatoreDB = new modelloGiocatore(gObject);
         giocatoreDB = await giocatoreDB.save();
         let giocatoreId = giocatoreDB.id;
         console.log('Giocatore saved successfully');
         res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
-    }
-    else{ 
+    }else{
         res.status(400).send({
-            message: "Please provide a valid email address.",
-        });
+            message: errorMessage
+        })
     }
+
 });
 
 //GET /api/v1/giocatori/{ID}

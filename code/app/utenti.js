@@ -20,6 +20,7 @@ class Utente{
         return this.firstname + "," + this.lastname + "," + this.age;
     }
     verificaEmail(){
+        //Ritorna una promise.
         return emailValidator.validate(this.email);
     }
     verificaRiempimentoCampi(){
@@ -38,8 +39,26 @@ class Utente{
      * l'indirizzo email è già presente), e se i dati immessi sono dati 
      * validi.
      */
-    verificaRegistrazione(){
+    async verificaRegistrazione(){
+        let isValid = false;
+        let error = "Undefined";
 
+        if (!this.verificaRiempimentoCampi()){
+            isValid = false;
+            error = "Alcuni campi mancano";
+            return {isValid,error};
+        }
+
+        const {valid, reason, validators} = await this.verificaEmail();
+        if(valid){
+            isValid = true;
+            error = "";
+        }else{
+            isValid = false;
+            error = "Please provide a valid email address.";
+        }
+        
+        return {isValid,error};
     }
     
     
