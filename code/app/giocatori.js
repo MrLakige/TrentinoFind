@@ -7,6 +7,22 @@ class Giocatore extends Utente{
     constructor(email, firstname, lastname, age, phone){
         super(email, firstname, lastname, age, phone);
     }
+    /**
+     * Questa funzione si occupa di verificare se all'interno
+     * del database è già presente un giocatore con la stessa email
+     * inserita in fase di registrazione
+     */
+    async verificaGiocatoreEsistente(){
+        console.log(this.email);
+        let giocatoreDB = await modelloGiocatore.find({ email: this.email }).exec();
+        console.log("numero di documenti presenti   " + giocatoreDB.length);
+        if(!giocatoreDB.length){ //if null
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
 }
 
 
@@ -18,18 +34,25 @@ router.post('', async (req, res) => {
     
     console.log(gObject);
 
-    const {isValid, errorMessage } = await gObject.verificaRegistrazione();
-
-    if (isValid){ 
+    const {isValid, error } = await gObject.verificaRegistrazione();
+    const thereIsSomeoneElse = await gObject.verificaGiocatoreEsistente();
+    
+    if (isValid && !thereIsSomeoneElse){ 
         let giocatoreDB = new modelloGiocatore(gObject);
         giocatoreDB = await giocatoreDB.save();
         let giocatoreId = giocatoreDB.id;
         console.log('Giocatore saved successfully');
         res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
     }else{
-        res.status(400).send({
-            message: errorMessage
-        })
+        if(thereIsSomeoneElse){
+            res.status(400).send({
+                message: "Esiste già un account con questa email"
+            })
+        }else{
+            res.status(400).send({
+                message: error
+            })
+        }
     }
 
 });

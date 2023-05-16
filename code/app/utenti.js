@@ -57,7 +57,7 @@ class Utente{
             isValid = false;
             error = "Please provide a valid email address.";
         }
-        
+
         return {isValid,error};
     }
     
