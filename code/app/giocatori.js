@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const modelloGiocatore = require('./models/schemaGiocatore'); // get our mongoose model
-const emailValidator = require('deep-email-validator');
 
 const Utente = require("./utenti");
-
 class Giocatore extends Utente{
     constructor(email, firstname, lastname, age, phone){
         super(email, firstname, lastname, age, phone);
