@@ -25,7 +25,7 @@ router.post('', async (req, res) => {
             message: "Alcuni campi mancano"
         })
     }
-    const {valid, reason, validators} = await gObject.verificaEmail();
+    const {valid, reason, validators} = gObject.verificaEmail();
     if (valid){ 
         let giocatoreDB = new modelloGiocatore(gObject);
         giocatoreDB = await giocatoreDB.save();
