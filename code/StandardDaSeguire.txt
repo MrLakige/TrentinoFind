@@ -19,7 +19,7 @@ Giocatore:
     per identificare la classe di tipo Giocatore, un oggetto di
     questa classe lo chiamo:
         gObject
-n
+
 Come si relazionano tra di loro gObject e giocatoreDB?
 
     1) gObject istanza delle classe Giocatore
