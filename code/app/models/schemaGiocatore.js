@@ -9,13 +9,13 @@ const schemaGiocatore = new Schema({
     phone: String,
 });
 
-const Giocatore = mongoose.model('Giocatore', schemaGiocatore);
+const modelloGiocatore = mongoose.model('Giocatore', schemaGiocatore);
 
-Giocatore.createCollection().then(function(collection) {
+modelloGiocatore.createCollection().then(function(collection) {
   console.log('Collection is created!');
 });
 
-module.exports = Giocatore;
+module.exports = modelloGiocatore;
 
 /*
 // set up a mongoose model

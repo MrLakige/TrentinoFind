@@ -4,7 +4,5 @@ exports.user = new mongoose.Schema({
     firstname: String,
     lastname:String,   
     age: Number,
-    passwordHash: String,
     phone: String,
-    type: String,
 });
