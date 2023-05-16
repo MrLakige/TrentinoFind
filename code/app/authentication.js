@@ -23,8 +23,7 @@ router.post('', async function(req, res) {
 	
 
     // calculate hash
-    let salt = crypto.randomBytes(16).toString('hex');
-    let hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64, `sha512`).toString(`hex`); 
+    let hash = crypto.pbkdf2Sync(req.body.password, '', 1000, 64, `sha512`).toString(`hex`); 
 	// check if password hash matches
 	if (user.password != hash) {
 		res.json({ success: false, message: 'Authentication failed. Wrong password.' });
