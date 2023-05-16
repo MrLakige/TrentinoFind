@@ -31,8 +31,10 @@ paths:
               schema:
                 type: string
               description: Link al nuovo giocatore creato
-        '405':
-          description: Invalid input
+        '400':
+          description: Dati inseriti mancanti o non validi o già presenti all'interno del sistema.
+          
+          
   
   /giocatori/{ID}:
     put:
