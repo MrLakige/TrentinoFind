@@ -13,9 +13,7 @@ class Giocatore extends Utente{
      * inserita in fase di registrazione
      */
     async verificaGiocatoreEsistente(){
-        console.log(this.email);
         let giocatoreDB = await modelloGiocatore.find({ email: this.email }).exec();
-        console.log("numero di documenti presenti   " + giocatoreDB.length);
         if(!giocatoreDB.length){ //if null
             return false;
         }else{
@@ -32,8 +30,6 @@ router.post('', async (req, res) => {
     let gObject = new Giocatore(req.body.email, req.body.firstname, 
         req.body.lastname, req.body.age, req.body.phone);
     
-    console.log(gObject);
-
     const {isValid, error } = await gObject.verificaRegistrazione();
     const thereIsSomeoneElse = await gObject.verificaGiocatoreEsistente();
     
@@ -46,7 +42,7 @@ router.post('', async (req, res) => {
     }else{
         if(thereIsSomeoneElse){
             res.status(400).send({
-                message: "Esiste già un account con questa email"
+                message: 'Esiste già un account con questa email'
             })
         }else{
             res.status(400).send({
