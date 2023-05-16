@@ -1,4 +1,7 @@
-// super classe utente
+const express = require('express');
+const router = express.Router();
+const emailValidator = require('deep-email-validator');
+
 class Utente{
     constructor(email, firstname, lastname, age, phone){
         this.email = email;
@@ -16,6 +19,17 @@ class Utente{
     description(){
         return this.firstname + "," + this.lastname + "," + this.age;
     }
+    verificaEmail(){
+        return emailValidator.validate(this.email);
+    }
+    verificaRiempimentoCampi(){
+        if (!this.email || !this.firstname || !this.lastname 
+            || !this.age || !this.phone){
+            return false;
+          } else{
+            return true;
+          }
+    }
     /**
      * Registrazione()
      * Questo metodo si occupa di verificare se è possibile effettuare una 
@@ -24,7 +38,9 @@ class Utente{
      * l'indirizzo email è già presente), e se i dati immessi sono dati 
      * validi.
      */
-    Registrazione(){}
+    verificaRegistrazione(){
+
+    }
     
     
     Autenticazione(){}
