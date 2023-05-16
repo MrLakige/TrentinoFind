@@ -5,6 +5,4 @@ exports.user = new mongoose.Schema({
     description:String,   
     validated: Boolean,
     comments: String,
-    phone: String,
-    type: String,
 });
