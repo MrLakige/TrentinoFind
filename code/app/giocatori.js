@@ -43,15 +43,15 @@ router.post('', async (req, res) => {
 
 //GET /api/v1/giocatori/{ID}
 router.get('/:id', async (req, res) => {
-    let giocatore = await modelloGiocatore.findById(req.params.id);
-    res.status(200).json(giocatore)
+    let giocatoreDB = await modelloGiocatore.findById(req.params.id);
+    res.status(200).json(giocatoreDB)
 });
 
 //PUT /api/v1/giocatori/{ID}
 router.put('/:id', async (req, res) => {
-    let giocatore = await modelloGiocatore.findByIdAndUpdate(req.params.id, req.body);
-    giocatore = await modelloGiocatore.findById(req.params.id);
-    res.status(200).json(giocatore)
+    let giocatoreDB = await modelloGiocatore.findByIdAndUpdate(req.params.id, req.body);
+    giocatoreDB = await modelloGiocatore.findById(req.params.id);
+    res.status(200).json(giocatoreDB)
 });
 
 module.exports = router;
