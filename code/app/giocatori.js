@@ -50,23 +50,44 @@ router.post('', async (req, res) => {
         let giocatoreId = giocatoreDB.id;
         res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
     }else{
-        res.status(400).send({
+        res.status(400).json({
             message: error
         })
     }
 });
 
 //GET /api/v1/giocatori/{ID}
+//C'è ancora da aggiungere la verifica della autenticazione
 router.get('/:id', async (req, res) => {
     let giocatoreDB = await modelloGiocatore.findById(req.params.id);
-    res.status(200).json(giocatoreDB)
+    if(!giocatoreDB){ //if null
+        res.status(400).json("ID non valido");
+    }else{
+        res.status(200).json(giocatoreDB);
+    }
 });
 
 //PUT /api/v1/giocatori/{ID}
+//C'è ancora da aggiungere la verifica della autenticazione
 router.put('/:id', async (req, res) => {
-    let giocatoreDB = await modelloGiocatore.findByIdAndUpdate(req.params.id, req.body);
-    giocatoreDB = await modelloGiocatore.findById(req.params.id);
-    res.status(200).json(giocatoreDB)
+    let gObject = new Giocatore(req.body.email, req.body.firstname, 
+        req.body.lastname, req.body.age, req.body.phone);
+    giocatoreDB = await modelloGiocatore.findById(req.params.id);//Esiste un giocatore con quell'ID
+    if(!giocatoreDB){ //No, non esiste
+        res.status(400).json("ID non valido");
+    }else{//Si esiste
+        //Verifico prima se posso fare la modifica che è stata mandata
+        const {isValid, error} = await gObject.verificaRegistrazione();
+        if (isValid){//Si, si può fare
+            await modelloGiocatore.findByIdAndUpdate(req.params.id, req.body);
+            giocatoreDB = await modelloGiocatore.findById(req.params.id);
+            res.status(200).json(giocatoreDB);
+        }else{//No, non si può fare
+            res.status(400).json({
+                message: error
+            })
+        }
+    }
 });
 
 module.exports = router;
