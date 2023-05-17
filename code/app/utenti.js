@@ -31,14 +31,6 @@ class Utente{
             return true;
           }
     }
-    /**
-     * Registrazione()
-     * Questo metodo si occupa di verificare se è possibile effettuare una 
-     * registrazione di un utente all'interno del sistema, in particolare
-     * verificando se l'utente è già stato registrato (verificando se 
-     * l'indirizzo email è già presente), e se i dati immessi sono dati 
-     * validi.
-     */
     async verificaRegistrazione(){
         let isValid = false;
         let error = "Undefined";
