@@ -36,7 +36,7 @@ class Giocatore extends Utente{
 }
 
 function filtraInformazioni(giocatoreDB){
-    return [giocatoreDB].map( (giocatoreDB) => {
+    giocatoreDB = [giocatoreDB].map( (giocatoreDB) => {
         return {
             email: giocatoreDB.email,
             firstname: giocatoreDB.firstname,
@@ -45,6 +45,7 @@ function filtraInformazioni(giocatoreDB){
             phone: giocatoreDB.phone,
         };
     });
+    return giocatoreDB;
 }
 
 //POST /api/v1/giocatori
