@@ -35,6 +35,17 @@ class Giocatore extends Utente{
     }
 }
 
+function filtraInformazioni(giocatoreDB){
+    return [giocatoreDB].map( (giocatoreDB) => {
+        return {
+            email: giocatoreDB.email,
+            firstname: giocatoreDB.firstname,
+            lastname: giocatoreDB.lastname,
+            age: giocatoreDB.age,
+            phone: giocatoreDB.phone,
+        };
+    });
+}
 
 //POST /api/v1/giocatori
 router.post('', async (req, res) => {
@@ -63,7 +74,7 @@ router.get('/:id', async (req, res) => {
     if(!giocatoreDB){ //if null
         res.status(400).json("ID non valido");
     }else{
-        res.status(200).json(giocatoreDB);
+        res.status(200).json(filtraInformazioni(giocatoreDB));
     }
 });
 
@@ -81,7 +92,7 @@ router.put('/:id', async (req, res) => {
         if (isValid){//Si, si può fare
             await modelloGiocatore.findByIdAndUpdate(req.params.id, req.body);
             giocatoreDB = await modelloGiocatore.findById(req.params.id);
-            res.status(200).json(giocatoreDB);
+            res.status(200).json(filtraInformazioni(giocatoreDB));
         }else{//No, non si può fare
             res.status(400).json({
                 message: error
