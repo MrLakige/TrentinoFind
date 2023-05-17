@@ -48,7 +48,6 @@ router.post('', async (req, res) => {
         let giocatoreDB = new modelloGiocatore(gObject);
         giocatoreDB = await giocatoreDB.save();
         let giocatoreId = giocatoreDB.id;
-        console.log('Giocatore saved successfully');
         res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
     }else{
         res.status(400).send({
