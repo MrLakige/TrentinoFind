@@ -51,6 +51,9 @@ router.post('', async function(req, res) {
 
 });
 
+function checkCredential(){
 
+}
 
 module.exports = router;
+module.exports = checkCredential();

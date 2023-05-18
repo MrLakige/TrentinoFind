@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const emailValidator = require('deep-email-validator');
+const authentication = require('./authentication.js');
 
 class Utente{
     constructor(email, firstname, lastname, age, phone){
@@ -54,7 +55,9 @@ class Utente{
     }
     
     
-    Autenticazione(){}
+    Autenticazione(){
+        authentication.checkCredential();
+    }
     VisuallizzaInformazioni(){}
     ModificaInformazioni(){}
 }
