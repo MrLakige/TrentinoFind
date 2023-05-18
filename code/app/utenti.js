@@ -10,6 +10,8 @@ class Utente{
         this.lastname = lastname;
         this.age = age;
         this.phone = phone;
+        // manca la password per l'autenticazione 
+        // this.passwordHash = passwordHash
     }
     getfirstname(){
         return this.firstname;
