@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 const schemaGiocatore = new Schema({ 
 	email: String,
+    password: String,
     firstname: String,
     lastname: String,
     age: String,

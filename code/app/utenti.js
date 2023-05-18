@@ -4,8 +4,9 @@ const emailValidator = require('deep-email-validator');
 const authentication = require('./authentication.js');
 
 class Utente{
-    constructor(email, firstname, lastname, age, phone){
+    constructor(email, password, firstname, lastname, age, phone){
         this.email = email;
+        this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
@@ -13,21 +14,12 @@ class Utente{
         // manca la password per l'autenticazione 
         // this.passwordHash = passwordHash
     }
-    getfirstname(){
-        return this.firstname;
-    }
-    getlastname(){
-        return this.lastname;
-    }
-    description(){
-        return this.firstname + "," + this.lastname + "," + this.age;
-    }
     verificaEmail(){
         //Ritorna una promise.
         return emailValidator.validate(this.email);
     }
     verificaRiempimentoCampi(){
-        if (!this.email || !this.firstname || !this.lastname 
+        if (!this.email || !this.password || !this.firstname || !this.lastname 
             || !this.age || !this.phone){
             return false;
           } else{

@@ -4,8 +4,8 @@ const modelloGiocatore = require('./models/schemaGiocatore'); // get our mongoos
 
 const Utente = require("./utenti");
 class Giocatore extends Utente{
-    constructor(email, firstname, lastname, age, phone){
-        super(email, firstname, lastname, age, phone);
+    constructor(email, password, firstname, lastname, age, phone){
+        super(email, password, firstname, lastname, age, phone);
     }
     /**
      * Questa funzione si occupa di verificare se all'interno
@@ -39,6 +39,7 @@ function filtraInformazioni(giocatoreDB){
     giocatoreDB = [giocatoreDB].map( (giocatoreDB) => {
         return {
             email: giocatoreDB.email,
+            password: giocatoreDB.password,
             firstname: giocatoreDB.firstname,
             lastname: giocatoreDB.lastname,
             age: giocatoreDB.age,
@@ -51,7 +52,7 @@ function filtraInformazioni(giocatoreDB){
 //POST /api/v1/giocatori
 router.post('', async (req, res) => {
 
-    let gObject = new Giocatore(req.body.email, req.body.firstname, 
+    let gObject = new Giocatore(req.body.email, req.body.password, req.body.firstname, 
         req.body.lastname, req.body.age, req.body.phone);
     
     const {isValid, error} = await gObject.verificaRegistrazione();
@@ -82,7 +83,7 @@ router.get('/:id', async (req, res) => {
 //PUT /api/v1/giocatori/{ID}
 //C'è ancora da aggiungere la verifica della autenticazione
 router.put('/:id', async (req, res) => {
-    let gObject = new Giocatore(req.body.email, req.body.firstname, 
+    let gObject = new Giocatore(req.body.email, req.body.password, req.body.firstname, 
         req.body.lastname, req.body.age, req.body.phone);
     giocatoreDB = await modelloGiocatore.findById(req.params.id);//Esiste un giocatore con quell'ID
     if(!giocatoreDB){ //No, non esiste
