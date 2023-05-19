@@ -3,8 +3,10 @@ const app = express();
 //const path = require('path');
 
 
-//Routing:
+//Routing://
 const giocatori = require('./giocatori.js');
+const authentication = require('./authentication.js');
+const tokenChecker = require('./tokenChecker.js');
 
 
 app.use(express.json());// parsing middelware json file
@@ -13,7 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1/giocatori', giocatori);
 
 
-
+// authenication:
+app.use('/api/v1/authentication', authentication);
 
 
 app.use((req,res,next) => {
