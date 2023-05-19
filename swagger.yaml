@@ -99,6 +99,36 @@ paths:
           description: ID non valido
         '401':
           description: Non autorizzato
+  
+  /authentication:
+    post:
+      tags:
+        - login
+      description: >-
+          fa accere l'utente alla piattaforma
+      summary: accesso alla piattaforma
+      requestBody:
+        content:
+          application/json:
+            schema:
+              
+        required: true
+      responses:
+        '201':
+          description: 'Accesso avvenuto'
+          headers:
+            'Accesso':
+              schema:
+                type: string
+              description: Token creato
+        '400':
+          description: 'Accesso negato, credenziali non valide'
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Accesso negato
+      
 
 components:
   schemas:
