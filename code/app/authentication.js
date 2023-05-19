@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const utente = require('./models/schemaUtente'); // get our mongoose model
+const utente = require('./models/schemaUtente.js'); // get our mongoose model
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const crypto = require('crypto');
 
@@ -11,7 +11,7 @@ const crypto = require('crypto');
 router.post('', async function(req, res) {
 	
 	try {
-			// find the user
+		// find the user
 		let user = await utente.findOne({
 			email: req.body.email
 		}).exec();
