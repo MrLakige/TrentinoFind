@@ -120,7 +120,7 @@ paths:
             'Accesso':
               schema:
                 type: string
-              description: Token creato
+              description: contiene il token creato
         '400':
           description: 'Accesso negato, credenziali non valide'
           content:
