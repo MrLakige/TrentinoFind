@@ -33,12 +33,6 @@ router.get('/:id', async (req, res) => {
     res.status(200).json(oggetto);
 });
 
-//PUT /api/v1/oggetto/{ID}
-router.put('/:id', async (req, res) => {
-    let oggetto = await modelloOggetto.findByIdAndUpdate(req.params.id, req.body);
-    oggetto = await modelloOggetto.findById(req.params.id);
-    res.status(200).json(oggetto);
-});
 
 module.exports = Oggetto;
 module.exports = router;
