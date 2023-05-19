@@ -7,6 +7,16 @@ class Oggetto{
 }
 
 
+
+//GET /api/v1/oggetto/{ID}
+router.get('/:id', async (req, res) => {
+    // cerco l'oggetto in base all'ID mandato
+    let oggetto = await modelloOggetto.findById(req.params.id);
+    res.status(200).json(oggetto);
+});
+
+
+/*
 //POST /api/v1/oggetti
 router.post('', async (req, res) => {
 
@@ -25,13 +35,7 @@ router.post('', async (req, res) => {
     console.log('Oggetto saved successfully');
     res.location("/api/v1/oggetti/" + oggettoId).status(201).send();
 });
-
-//GET /api/v1/oggetto/{ID}
-router.get('/:id', async (req, res) => {
-    // cerco l'oggetto in base all'ID mandato
-    let oggetto = await modelloOggetto.findById(req.params.id);
-    res.status(200).json(oggetto);
-});
+*/
 
 
 module.exports = Oggetto;
