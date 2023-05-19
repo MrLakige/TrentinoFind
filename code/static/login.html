@@ -1,0 +1,39 @@
+<html lang="it">
+
+<head>
+    <title>mockup</title>
+    <meta charset="UTF-8" />
+    <link href="pages/style/stile1.css" rel="stylesheet" type="Text/css" media="all" title="stile1" />
+</head>
+<h1>TrentinoFind</h1>
+
+<body>
+    <div id="nav">
+        <ul>
+            <li><a href="home">HOME</a></li>
+            <li><a href="login" style="color:red; font-weight: bold" ;>LOGIN</a></li>
+        </ul>
+    </div>
+    
+    <div id="testo">
+        <br>
+        <form method="POST" action="/api/v1/authentication">
+            <label>username:</label>
+            <input type="text" name="user" placeholder="username..." required/>
+            <br>
+            <br>
+            <label>password:</label>
+            <input type="password" name="pass" placeholder="password..." required/>
+            <br><br>
+            <a href="#" style="text-decoration: none; color:blue;">crea account</a>
+            <br><br>message<br><br>
+            <input type="submit" name="submit" value="login" />
+        </form>
+    </div>
+    <footer>
+        TrentinoFind, all right are reserved
+    </footer>
+    
+    </body>
+    
+    </html>
