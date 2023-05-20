@@ -5,5 +5,5 @@ D2 class diagram: https://docs.google.com/document/d/1bXJLALiqI4HMSc6jwd21-lz2Ah
 D3 user story: https://docs.google.com/document/d/1a_3OZPbdnCBdON2Up4VwBuKIDm6yi_E0mR1HBoJfjqM/edit?usp=sharing <br>
    spread sheet: <br>
     description: In questo foglio di lavoro è presente il "Product Backlog" e i dettagli riguardo lo "Sprint #1 Backlog" <br>
-    "https://docs.google.com/spreadsheets/d/1Q3ntwMbnz4UGaI5eQW87UfYakSoa2uqJmyk8HP1e8KQ/edit?usp=sharing
+    "https://docs.google.com/spreadsheets/d/1Q3ntwMbnz4UGaI5eQW87UfYakSoa2uqJmyk8HP1e8KQ/edit?usp=sharing <br>
 D3: https://docs.google.com/document/d/1gLtjXzjK29CINoVgKcR7Is9IecdfpCZNaaUn9GmtOnw/edit?usp=sharing
