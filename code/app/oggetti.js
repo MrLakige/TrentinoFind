@@ -3,16 +3,38 @@ const router = express.Router();
 const modelloOggetto = require('./models/schemaOggetto');
 
 class Oggetto{
-    constructor(location, idObject, description, validated, comments);
+    constructor(location, title, description, dimension, difficulty){
+        location = this.location;
+        title = this.title;
+        description = this.description;
+        dimension = this.dimension;
+        difficulty = this.difficulty;
+    }
 }
 
+function filtraInformazioni(oggettoDB){
+    oggettoDB = [oggettoDB].map( (oggettoDB) => {
+        return {
+            location: oggettoDB.location,
+            title: oggettoDB.title,
+            description: oggettoDB.description,
+            dimension: oggettoDB.dimension,
+            difficulty: oggettoDB.difficulty
+        };
+    });
+    return oggettoDB;
+}
 
-
-//GET /api/v1/oggetto/{ID}
+//GET /api/v1/oggetti/{ID}
 router.get('/:id', async (req, res) => {
-    // cerco l'oggetto in base all'ID mandato
-    let oggetto = await modelloOggetto.findById(req.params.id);
-    res.status(200).json(oggetto);
+    // cerco l'oggetto in base all'ID specificato nella richiesta
+    let oggettoDB = await modelloOggetto.findById(req.params.id);
+    // verifico se è stato trovato l'oggetto
+    if(!oggettoDB){ 
+        res.status(400).json("ID dell'oggetto non valido");
+    }else{
+        res.status(200).json(filtraInformazioni(oggettoDB));
+    }
 });
 
 
@@ -37,6 +59,4 @@ router.post('', async (req, res) => {
 });
 */
 
-
-module.exports = Oggetto;
 module.exports = router;
