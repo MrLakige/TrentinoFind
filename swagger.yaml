@@ -149,6 +149,26 @@ paths:
         '401':
           description: Non autorizzato
     
+    /commenti/{ID}:
+    delete:
+      tags:
+        - moderatore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del commento da cancellare
+          required: true
+          schema:
+            type: string
+      description: Cancella un commento dalla piattaforma.
+      summary: Cancella un commento.
+      responses:
+        '200':
+          description: Commento cancellato con successo
+        '400':
+          description: Errore nella cancellazione del commento
+        '401':
+          description: Non autorizzato
 
           
   /authentication:
@@ -367,7 +387,7 @@ paths:
           description: Rimozione del moderatore non avvenuta
         '401':
           description: Non autorizzato
-
+  
 
                 
 components:
@@ -457,6 +477,30 @@ components:
        phone: 
           type: string
           description: 'Numero di telefono del amministratore'
+          
+          
+    Commento:
+      type: object
+      required:
+        - idgiocatore
+        - idoggetto
+        - data
+        - testo
+      properties:
+        idgiocatore:
+          type: string
+          description: 'ID del giocatore che ha creato questo commento'
+        idoggetto:
+          type: string
+          description: 'ID dell oggetto a cui è associato questo commento'
+        data:
+          type: string
+          format: date
+          description: 'Data di creazione del commento'
+        testo:
+          type: string
+          description: 'Testo del commento'
+
           
           
           
