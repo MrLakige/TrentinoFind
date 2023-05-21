@@ -310,6 +310,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Moderatore'
+        required: true
       responses:
         '200':
           description: Modifica del moderatore avvenuta con successo
@@ -366,6 +367,7 @@ paths:
           description: Rimozione del moderatore non avvenuta
         '401':
           description: Non autorizzato
+
 
                 
 components:
