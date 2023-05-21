@@ -107,7 +107,7 @@ router.put('/:id', async (req, res) => {
 
             }
         }
-        
+
     }catch(error){
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
