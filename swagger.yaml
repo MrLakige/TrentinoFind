@@ -149,34 +149,7 @@ paths:
         '401':
           description: Non autorizzato
     
-  /amministratori:
-    post:
-      tags:
-        - amministratore
-      description: >-
-        Crea un nuovo amministratore all'interno del sistema.
-      summary: Crea un nuovo amministratore.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Giocatore'
-        required: true
-      responses:
-        '201':
-          description: 'Registrazione avvenuta. Link nel Location header'
-          headers:
-            'Location':
-              schema:
-                type: string
-              description: Link al nuovo amministratore creato
-        '400':
-          description: 'Non è possibile effetuare la registrazione'
-          content:
-            application/json:
-              schema:
-                type: string
-                description: Descrizione dell'errore in fase di registrazione
+
           
   /authentication:
     post:
@@ -206,7 +179,95 @@ paths:
               schema:
                 type: string
                 description: Accesso negato
-
+  
+  
+  /amministratori:
+    post:
+      tags:
+        - amministratore
+      description: >-
+        Crea un nuovo amministratore all'interno del sistema.
+      summary: Crea un nuovo amministratore.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Amministratore'
+        required: true
+      responses:
+        '201':
+          description: 'Registrazione avvenuta. Link nel Location header'
+          headers:
+            'Location':
+              schema:
+                type: string
+              description: Link al nuovo amministratore creato
+        '400':
+          description: 'Non è possibile effetuare la registrazione'
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore in fase di registrazione
+                
+  /amministratori/{ID}:
+    put:
+      tags:
+        - amministratore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del amministratore da modificare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: >-
+        Aggiorna un amministratore all'interno del sistema.
+      summary: Aggiorna un amministratore.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Amministratore'
+      responses:
+        '200':
+          description: Modifica avvenuta con successo
+        '400':
+          description: Modifica non avvenuta
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore che non ha permesso la modifica
+        '401':
+          description: Non autorizzato
+    get:
+      tags:
+        - amministratore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del amministratore da visualizzare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: >-
+        Ottiene le informazioni personali di un amministratore all'interno del sistema.
+      summary: Ottiene le informazioni personali di un amministratore.
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Amministratore'
+        '400':
+          description: ID del amministratore non valido
+        '401':
+          description: Non autorizzato
+                
 components:
   schemas:
     Giocatore:
@@ -270,7 +331,7 @@ components:
           type: string
           description: 'Codice di ritrovamento oggetto'
           
-    Ammministratore:
+    Amministratore:
       type: object
       required:
         - email
