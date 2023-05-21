@@ -269,3 +269,28 @@ components:
         codiceDiValidazione:
           type: string
           description: 'Codice di ritrovamento oggetto'
+          
+    Ammministratore:
+      type: object
+      required:
+        - email
+        - firstname
+        - lastname
+        - age
+        - phone
+      properties:
+       email:
+          type: string
+          description: 'Indirizzo email del amministratore'
+       firstname: 
+          type: string
+          description: 'Nome del amministratore'
+       lastname: 
+          type: string
+          description: 'Cognome del amministratore'
+       age: 
+          type: string
+          description: 'Età del amministratore'
+       phone: 
+          type: string
+          description: 'Numero di telefono del amministratore'
