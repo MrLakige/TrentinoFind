@@ -18,6 +18,7 @@ router.post('', async function(req, res) {
 		
 		// user not found
 		if (!user) {
+			res.status(405);
 			res.json({ success: false, message: 'Authentication failed. User not found.' });
 			return;
 		}
@@ -26,6 +27,7 @@ router.post('', async function(req, res) {
 		let hash = crypto.pbkdf2Sync(req.body.password, '', 1000, 64, `sha512`).toString(`hex`); 
 		// check if password hash matches
 		if (user.password != hash) {
+			res.status(405);
 			res.json({ success: false, message: 'Authentication failed. Wrong password.' });
 		}
 		
@@ -39,7 +41,7 @@ router.post('', async function(req, res) {
 			expiresIn: 86400 // expires in 24 hours
 		}
 		var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
-
+		res.status(200);
 		res.json({
 			success: true,
 			message: 'Token Create',
@@ -50,6 +52,7 @@ router.post('', async function(req, res) {
 		});
     } catch (error) {
         console.error(error);
+		res.status(502);
         res.json({ success: false, message: 'Server error' });
     }
 

@@ -1,39 +1,20 @@
-<html lang="it">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <title>mockup</title>
-    <meta charset="UTF-8" />
-    <link href="pages/style/stile1.css" rel="stylesheet" type="Text/css" media="all" title="stile1" />
+  <title>Login</title>
+  <script src="login.js"></script>
 </head>
-<h1>TrentinoFind</h1>
-
 <body>
-    <div id="nav">
-        <ul>
-            <li><a href="home">HOME</a></li>
-            <li><a href="login" style="color:red; font-weight: bold" ;>LOGIN</a></li>
-        </ul>
-    </div>
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="email">Email:</label>
+    <input type="text" id="email"><br>
     
-    <div id="testo">
-        <br>
-        <form method="POST" action="/api/v1/authentication">
-            <label>username:</label>
-            <input type="text" name="user" placeholder="username..." required/>
-            <br>
-            <br>
-            <label>password:</label>
-            <input type="password" name="pass" placeholder="password..." required/>
-            <br><br>
-            <a href="#" style="text-decoration: none; color:blue;">crea account</a>
-            <br><br>message<br><br>
-            <input type="submit" name="submit" value="login" />
-        </form>
-    </div>
-    <footer>
-        TrentinoFind, all right are reserved
-    </footer>
+    <label for="password">Password:</label>
+    <input type="password" id="password" /><br>
     
-    </body>
-    
-    </html>
+    <button type="submit">Login</button>
+  </form>
+  <p id="message"></p>
+</body>
+</html>
