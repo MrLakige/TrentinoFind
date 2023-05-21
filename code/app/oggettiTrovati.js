@@ -53,6 +53,9 @@ class OggettoTrovato{
         }
         return {isValid,error};
     }
+    async verificaCodiceDiValidazione(){
+        
+    }
 }
 
 
