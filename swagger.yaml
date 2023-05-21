@@ -38,9 +38,7 @@ paths:
               schema:
                 type: string
                 description: Descrizione dell'errore in fase di registrazione
-          
-          
-  
+                
   /giocatori/{ID}:
     put:
       tags:
@@ -73,7 +71,6 @@ paths:
                 description: Descrizione dell'errore che non ha permesso la modifica
         '401':
           description: Non autorizzato
-          
     get:
       tags:
         - giocatore
@@ -96,10 +93,91 @@ paths:
               schema:
                 $ref: '#/components/schemas/Giocatore'
         '400':
-          description: ID non valido
+          description: ID del giocatore non valido
         '401':
           description: Non autorizzato
-  
+          
+  /oggetti/{ID}:      
+     get:
+      tags:
+        - oggetto
+      parameters:
+        - name: ID
+          in: path
+          description: ID dell'oggetto da visualizzare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: >-
+        Ottiene le informazioni di un oggetto all'interno del sistema.
+      summary: Ottiene le informazioni di un oggetto.
+      responses:
+        '200':
+          description: Operazione avvenuta con successo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Oggetto'
+        '400':
+          description: ID dell'oggetto non valido
+        '401':
+          description: Non autorizzato
+          
+  /oggettiTrovati:
+    post:
+      description: >-
+        Crea un nuovo ritrovamento di un oggetto da parte di un 
+        giocatore all'interno del sistema.
+      summary: Crea un nuovo ritrovamento di un oggetto da parte di un giocatore.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OggettoTrovato'
+        required: true
+      responses:
+        '200':
+          description: Il ritrovamento è stato inserito con successo
+        '400':
+          description: 'Non è stato possibile validare il ritrovamento'
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore
+        '401':
+          description: Non autorizzato
+    
+  /amministratori:
+    post:
+      tags:
+        - amministratore
+      description: >-
+        Crea un nuovo amministratore all'interno del sistema.
+      summary: Crea un nuovo amministratore.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Giocatore'
+        required: true
+      responses:
+        '201':
+          description: 'Registrazione avvenuta. Link nel Location header'
+          headers:
+            'Location':
+              schema:
+                type: string
+              description: Link al nuovo amministratore creato
+        '400':
+          description: 'Non è possibile effetuare la registrazione'
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore in fase di registrazione
+          
   /authentication:
     post:
       tags:
@@ -128,7 +206,6 @@ paths:
               schema:
                 type: string
                 description: Accesso negato
-      
 
 components:
   schemas:
@@ -156,3 +233,39 @@ components:
        phone: 
           type: string
           description: 'Numero di telefono del giocatore'
+    Oggetto:
+      type: object
+      required:
+        - title
+        - description
+        - dimension
+        - difficulty
+      properties:
+       title:
+          type: string
+          description: "Il titolo dell'oggetto"
+       description: 
+          type: string
+          description: "La descrizione dell'oggetto"
+       dimension: 
+          type: string
+          description: "La dimensione dell'oggetto"
+       difficulty: 
+          type: string
+          description: "La difficoltà dell'oggetto"
+    OggettoTrovato:
+      type: object
+      required:
+      - giocatore
+      - oggetto
+      - codiceDiValidazione
+      properties:
+        giocatore:
+          type: string
+          description: 'ID giocatore'
+        oggetto:
+          type: string
+          description: 'ID oggetto'
+        codiceDiValidazione:
+          type: string
+          description: 'Codice di ritrovamento oggetto'

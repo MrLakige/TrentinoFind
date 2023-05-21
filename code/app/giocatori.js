@@ -85,21 +85,32 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     let gObject = new Giocatore(req.body.email, req.body.password, req.body.firstname, 
         req.body.lastname, req.body.age, req.body.phone);
-    giocatoreDB = await modelloGiocatore.findById(req.params.id);//Esiste un giocatore con quell'ID
-    if(!giocatoreDB){ //No, non esiste
-        res.status(400).json("ID non valido");
-    }else{//Si esiste
-        //Verifico prima se posso fare la modifica che è stata mandata
-        const {isValid, error} = await gObject.verificaRegistrazione();
-        if (isValid){//Si, si può fare
-            await modelloGiocatore.findByIdAndUpdate(req.params.id, req.body);
-            giocatoreDB = await modelloGiocatore.findById(req.params.id);
-            res.status(200).json(filtraInformazioni(giocatoreDB));
-        }else{//No, non si può fare
-            res.status(400).json({
-                message: error
-            })
+    try{
+        let giocatoreDB = await modelloGiocatore.findById(req.params.id);//Esiste un giocatore con quell'ID
+        if(!giocatoreDB){ //No, il giocarore non esiste
+            res.status(400).json("ID non valido");
+        }else{//Si, il giocatore esiste
+            //Verifico prima se posso fare la modifica che è stata mandata
+            const {isValid, error} = await gObject.verificaRegistrazione();
+            if (isValid){//Si, la modifica si può fare
+                // findByIdAndUpdate restituisce il documento precedento, non quello passto come parametro
+                await modelloGiocatore.findByIdAndUpdate(req.params.id, req.body);
+                giocatoreDB = await modelloGiocatore.findById(req.params.id);
+                res.status(200).json(filtraInformazioni(giocatoreDB));
+
+            }else{//No, la modifica non si può fare
+
+                res.status(400).json({
+                    //Descrizione dell'errore che non ha permesso la modifica
+                    message: error
+                })
+
+            }
         }
+        
+    }catch(error){
+        // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
+        res.status(400).json("Formato ID non valido");
     }
 });
 
