@@ -267,6 +267,106 @@ paths:
           description: ID del amministratore non valido
         '401':
           description: Non autorizzato
+          
+  /moderatori:
+    post:
+      tags:
+        - amministratore
+      description: Aggiungi un nuovo moderatore alla piattaforma.
+      summary: Aggiungi un nuovo moderatore.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Moderatore'
+        required: true
+      responses:
+        '201':
+          description: Aggiunta del moderatore avvenuta con successo
+        '400':
+          description: Errore nell'aggiunta del moderatore
+          content:
+            application/json:
+              schema:
+                type: string
+              description: Descrizione dell'errore durante l'aggiunta del moderatore
+
+  /moderatori/{ID}:
+    put:
+      tags:
+        - amministratore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del moderatore da modificare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: Aggiorna le informazioni di un moderatore.
+      summary: Aggiorna un moderatore.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Moderatore'
+      responses:
+        '200':
+          description: Modifica del moderatore avvenuta con successo
+        '400':
+          description: Errore nella modifica del moderatore
+          content:
+            application/json:
+              schema:
+                type: string
+              description: Descrizione dell'errore durante la modifica del moderatore
+        '401':
+          description: Non autorizzato
+    get:
+      tags:
+        - amministratore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del moderatore da visualizzare
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: Ottiene le informazioni di un moderatore.
+      summary: Ottiene le informazioni di un moderatore.
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Moderatore'
+        '400':
+          description: ID del moderatore non valido
+        '401':
+          description: Non autorizzato
+    delete:
+      tags:
+        - amministratore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del moderatore da rimuovere
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: Rimuove un moderatore dalla piattaforma.
+      summary: Rimuove un moderatore.
+      responses:
+        '200':
+          description: Rimozione del moderatore avvenuta con successo
+        '400':
+          description: Rimozione del moderatore non avvenuta
+        '401':
+          description: Non autorizzato
+
                 
 components:
   schemas:
@@ -355,3 +455,31 @@ components:
        phone: 
           type: string
           description: 'Numero di telefono del amministratore'
+          
+          
+          
+          
+    Moderatore:
+      type: object
+      required:
+        - email
+        - firstname
+        - lastname
+        - age
+        - phone
+      properties:
+       email:
+          type: string
+          description: 'Indirizzo email del moderatore'
+       firstname: 
+          type: string
+          description: 'Nome del moderatore'
+       lastname: 
+          type: string
+          description: 'Cognome del moderatore'
+       age: 
+          type: string
+          description: 'Età del moderatore'
+       phone: 
+          type: string
+          description: 'Numero di telefono del moderatoreggi'
