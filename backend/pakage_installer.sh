@@ -1,0 +1,1 @@
+npm install express mongoose crypto deep-email-validator jsonwebtoken mongodb supertest
