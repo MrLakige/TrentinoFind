@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 //Creazione dello schema oggetto
 const schemaOggetto = new Schema({ 
-	location: String,
+	  location: String,
     title: String,
     description: String, 
     dimension: String,
