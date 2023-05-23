@@ -8,6 +8,7 @@ const schemaOggetto = new Schema({
     description: String, 
     dimension: String,
     difficulty: String,
+    codiceDiValidazione: String
     /**
      * Commentati questi campi dello schema, in quanto verranno aggiunti
      * quando verranno implementate le user story che li richiedono

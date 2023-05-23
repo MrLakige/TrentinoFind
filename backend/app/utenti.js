@@ -12,9 +12,10 @@ class Utente{
         this.age = age;
         this.phone = phone;
     }
-    verificaEmail(){
+    async verificaEmail(){
         //Ritorna una promise.
-        return emailValidator.validate(this.email);
+        const {valid, reason, validators} = await emailValidator.validate(this.email);;
+        return valid;
     }
     verificaRiempimentoCampi(){
         if (!this.email || !this.password || !this.firstname || !this.lastname 
@@ -34,13 +35,14 @@ class Utente{
             return {isValid,error};
         }
 
-        const {valid, reason, validators} = await this.verificaEmail();
+        
+        const valid = await this.verificaEmail();
         if(valid){
             isValid = true;
             error = "";
         }else{
             isValid = false;
-            error = "Please provide a valid email address.";
+            error = "Indirizzo email non valido";
         }
 
         return {isValid,error};
