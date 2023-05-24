@@ -2,13 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Creazione dello schema oggetto
-const schemaOggetto = new Schema({ 
+const schemaOggetto = new Schema({
+    idGiocatore: String,
 	  location: String,
     title: String,
     description: String, 
     dimension: String,
     difficulty: String,
-    codiceDiValidazione: String
+    codiceDiValidazione: String,
+    provaCampo: String
     /**
      * Commentati questi campi dello schema, in quanto verranno aggiunti
      * quando verranno implementate le user story che li richiedono

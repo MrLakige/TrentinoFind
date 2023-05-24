@@ -97,6 +97,35 @@ paths:
         '401':
           description: Non autorizzato
           
+  /oggetti:
+    post:
+      tags:
+        - oggetto
+      description: >-
+        Crea un nuovo oggetto all'interno del sistema.
+      summary: Crea un nuovo oggetto.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Oggetto'
+        required: true
+      responses:
+        '201':
+          description: 'Inserimento di un nuovo oggetto avvenuto con successo. Link nel Location header'
+          headers:
+            'Location':
+              schema:
+                type: string
+              description: Link al nuovo oggetto inserito
+        '400':
+          description: "Non è stato possibile inserire l'oggetto"
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore in fase di inserimento oggetto
+          
   /oggetti/{ID}:      
      get:
       tags:
@@ -169,37 +198,6 @@ paths:
           description: Errore nella cancellazione del commento
         '401':
           description: Non autorizzato
-
-          
-  /authentication:
-    post:
-      tags:
-        - login
-      description: >-
-          fa accere l'utente alla piattaforma
-      summary: accesso alla piattaforma
-      requestBody:
-        content:
-          application/json:
-            schema:
-              
-        required: true
-      responses:
-        '201':
-          description: 'Accesso avvenuto'
-          headers:
-            'Accesso':
-              schema:
-                type: string
-              description: contiene il token creato
-        '400':
-          description: 'Accesso negato, credenziali non valide'
-          content:
-            application/json:
-              schema:
-                type: string
-                description: Accesso negato
-  
   
   /amministratori:
     post:
@@ -416,95 +414,7 @@ components:
        phone: 
           type: string
           description: 'Numero di telefono del giocatore'
-    Oggetto:
-      type: object
-      required:
-        - title
-        - description
-        - dimension
-        - difficulty
-      properties:
-       title:
-          type: string
-          description: "Il titolo dell'oggetto"
-       description: 
-          type: string
-          description: "La descrizione dell'oggetto"
-       dimension: 
-          type: string
-          description: "La dimensione dell'oggetto"
-       difficulty: 
-          type: string
-          description: "La difficoltà dell'oggetto"
-    OggettoTrovato:
-      type: object
-      required:
-      - giocatore
-      - oggetto
-      - codiceDiValidazione
-      properties:
-        giocatore:
-          type: string
-          description: 'ID giocatore'
-        oggetto:
-          type: string
-          description: 'ID oggetto'
-        codiceDiValidazione:
-          type: string
-          description: 'Codice di ritrovamento oggetto'
-          
-    Amministratore:
-      type: object
-      required:
-        - email
-        - firstname
-        - lastname
-        - age
-        - phone
-      properties:
-       email:
-          type: string
-          description: 'Indirizzo email del amministratore'
-       firstname: 
-          type: string
-          description: 'Nome del amministratore'
-       lastname: 
-          type: string
-          description: 'Cognome del amministratore'
-       age: 
-          type: string
-          description: 'Età del amministratore'
-       phone: 
-          type: string
-          description: 'Numero di telefono del amministratore'
-          
-          
-    Commento:
-      type: object
-      required:
-        - idgiocatore
-        - idoggetto
-        - data
-        - testo
-      properties:
-        idgiocatore:
-          type: string
-          description: 'ID del giocatore che ha creato questo commento'
-        idoggetto:
-          type: string
-          description: 'ID dell oggetto a cui è associato questo commento'
-        data:
-          type: string
-          format: date
-          description: 'Data di creazione del commento'
-        testo:
-          type: string
-          description: 'Testo del commento'
-
-          
-          
-          
-          
+    
     Moderatore:
       type: object
       required:
@@ -529,3 +439,102 @@ components:
        phone: 
           type: string
           description: 'Numero di telefono del moderatoreggi'
+
+    Amministratore:
+      type: object
+      required:
+        - email
+        - firstname
+        - lastname
+        - age
+        - phone
+      properties:
+       email:
+          type: string
+          description: 'Indirizzo email del amministratore'
+       firstname: 
+          type: string
+          description: 'Nome del amministratore'
+       lastname: 
+          type: string
+          description: 'Cognome del amministratore'
+       age: 
+          type: string
+          description: 'Età del amministratore'
+       phone: 
+          type: string
+          description: 'Numero di telefono del amministratore'
+    
+    Oggetto:
+      type: object
+      required:
+        - IDgiocatore
+        - location
+        - title
+        - description
+        - dimension
+        - difficulty
+        - codiceDiValidazione
+      properties:
+        IDgiocatore:
+          type: string
+          description: "Il giocatore che ha inserito l'oggetto"
+        location:
+          type: string
+          description: "La posizione dell'oggetto"
+        title:
+          type: string
+          description: "Il titolo dell'oggetto"
+        description: 
+          type: string
+          description: "La descrizione dell'oggetto"
+        dimension: 
+          type: string
+          description: "La dimensione dell'oggetto"
+        difficulty: 
+          type: string
+          description: "La difficoltà dell'oggetto"    
+        codiceDiValidazione: 
+          type: string
+          description: "Il codice di validazione per l'oggetto"    
+    
+    OggettoTrovato:
+      type: object
+      required:
+      - giocatore
+      - oggetto
+      - codiceDiValidazione
+      properties:
+        giocatore:
+          type: string
+          description: 'ID giocatore'
+        oggetto:
+          type: string
+          description: 'ID oggetto'
+        codiceDiValidazione:
+          type: string
+          description: 'Codice di ritrovamento oggetto'
+    
+    Commento:
+      type: object
+      required:
+        - idgiocatore
+        - idoggetto
+        - data
+        - testo
+      properties:
+        idgiocatore:
+          type: string
+          description: 'ID del giocatore che ha creato questo commento'
+        idoggetto:
+          type: string
+          description: 'ID dell oggetto a cui è associato questo commento'
+        data:
+          type: string
+          format: date
+          description: 'Data di creazione del commento'
+        testo:
+          type: string
+          description: 'Testo del commento'
+
+          

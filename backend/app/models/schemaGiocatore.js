@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 //Creazione dello schema giocatore
 const schemaGiocatore = new Schema({
     idOggettiTrovati: Array,
+    idOggettiNascosti: Array,
 	  email: String,
     password: String,
     firstname: String,
