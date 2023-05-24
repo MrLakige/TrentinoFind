@@ -3,8 +3,8 @@
 
 
 const request = require('supertest');
-const jwt     = require('jsonwebtoken');
-const app     = require('./app');
+const jwt = require('jsonwebtoken');
+const app = require('./app');
 
 describe('GET /api/v1/giocatori', () => {
 
@@ -12,7 +12,7 @@ describe('GET /api/v1/giocatori', () => {
   let findGiocatore;
 
   beforeAll( () => {
-    const giocatore = require('./models/schemaGiocatori');
+    const giocatore = require('./models/schemaGiocatore');
     findGiocatore = jest.spyOn(giocatore, 'findOne').mockImplementation((criterias) => {
       return {
         id: 12345678,
@@ -42,7 +42,7 @@ describe('GET /api/v1/giocatori', () => {
   var options = {
     expiresIn: 86400 // expires in 24 hours
   }
-  var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
+  var token = jwt.sign(payload, "supersecretkey", options);
       
   test('GET /api/v1/giocatori?token=<valid> should return 200', async () => {
     expect.assertions(1);
