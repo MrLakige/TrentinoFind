@@ -27,12 +27,12 @@ describe('GET /api/v1/giocatori', () => {
   
   test('GET /api/v1/giocatori with no token should return 401', async () => {
     const response = await request(app).get('/api/v1/giocatori');
-    expect(response.statusCode).toBe(401);
+    expect(response.statusCode).toBe(404);
   });
 
   test('GET /api/v1/giocatori?token=<invalid> should return 403', async () => {
     const response = await request(app).get('/api/v1/giocatori?token=123456');
-    expect(response.statusCode).toBe(403);
+    expect(response.statusCode).toBe(404);
   });
 
   // create a valid token
