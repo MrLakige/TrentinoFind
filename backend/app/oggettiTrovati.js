@@ -82,7 +82,7 @@ router.post('', async (req, res) => {
         if(!isValid){ 
             res.status(400).json(status);
         }else{
-            res.status(200).send();
+            res.status(200).send("Il ritrovamento è stato inserito con successo");
         }
     } catch  (error){
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
