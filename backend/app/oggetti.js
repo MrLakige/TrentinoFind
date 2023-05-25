@@ -28,6 +28,7 @@ class Oggetto{
         if(!this.giocatoreDB) return false
         return true
     }
+    //Verifica della correttezza della richiesta di inserimento oggetto
     async verificaOggettoInserito(){
         let isValid = true;
         let status = "Undefined";
@@ -48,27 +49,27 @@ class Oggetto{
         if(!isValid) return {isValid, status};
         /**
          * In tal caso se siamo in condizione di validità il campo
-         * this.giocatoreDB è inizializzato
+         * this.giocatoreDB è inizializzato nel metodo verificaGiocatoreEsistente
          */
-        //istanzio un modello dell'oggetto ricevuto
-        this.oggettoDB = new modelloOggetto(this.filtraInformazioniOggettoDB());
+        /** Istanzio un modello dell'oggetto ricevuto
+         *  sulla base dello schemaOggetto
+         * */
+        this.oggettoDB = new modelloOggetto(this.filtraInformazioniOggettoInseritoDB());
         // salvo l'oggetto nel database
         this.oggettoDB = await this.oggettoDB.save();
-
+        //Recupero l'insieme di oggetti inseriti dal gioctore
         let idOggettiNascostiDB = this.giocatoreDB.idOggettiNascosti;
+        //Aggiungo l'id dell'oggetto inserito
         idOggettiNascostiDB.push(this.oggettoDB.id);
-        /**
-         * [options.overwrite=false] «Boolean» By default, if you don't include any update operators 
-         * in update, Mongoose will wrap update in $set for you. This prevents you from accidentally
-         * overwriting the document. This option tells Mongoose to skip adding $set. An alternative 
-         * to this would be using Model.findOneAndReplace({ _id: id }, update, options).
-         */
+        //Modifico il documento del giocatores
         await modelloGiocatore.findByIdAndUpdate(this.giocatoreDB.id, { idOggettiNascosti: idOggettiNascostiDB });
         return {isValid, status};
     }
-    //Metodo interno per filtrare le informazioni della classe Oggetto
-    //che andranno inserite nel documento del DB della collezione Oggetto
-    filtraInformazioniOggettoDB(){
+    /**
+     * Metodo interno per filtrare le informazioni della classe Oggetto
+     * che andranno inserite nel documento del DB della collezione Oggetto
+     */
+    filtraInformazioniOggettoInseritoDB(){
         return {
             idGiocatore: this.IDgiocatore,
             location: this.location,
@@ -76,7 +77,13 @@ class Oggetto{
             description: this.description,
             dimension: this.dimension,
             difficulty: this.difficulty,
-            codiceDiValidazione: this.codiceDiValidazione
+            codiceDiValidazione: this.codiceDiValidazione,
+            /**
+             * Questo campo è messo a false in quanto l'inserimento di un 
+             * nuovo oggetto prevede che quest'ultimo debba essere validato
+             * da un moderatore
+             */
+            validated: false
             };
     }
 }
@@ -113,9 +120,7 @@ router.post('', async (req, res) => {
         req.body.title, req.body.description, req.body.dimension, 
         req.body.difficulty, req.body.codiceDiValidazione);
     try{
-        console.log(oObject);
         const {isValid, status} = await oObject.inserisciOggettoTrovato();;
-        console.log(oObject);
         if (isValid){ 
             let oggettoId = oObject.oggettoDB.id;
             res.location("/api/v1/oggetti/" + oggettoId).status(201).send();

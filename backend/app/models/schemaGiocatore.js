@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const schemaGiocatore = new Schema({
     idOggettiTrovati: Array,
     idOggettiNascosti: Array,
-	  email: String,
+    email: String,
     password: String,
     firstname: String,
     lastname: String,

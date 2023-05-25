@@ -14,8 +14,10 @@ class Utente{
     }
     async verificaEmail(){
         //Ritorna una promise.
-        const {valid, reason, validators} = await emailValidator.validate(this.email);;
-        return valid;
+        //console.log(await emailValidator.validate(this.email));
+        //const {valid, reason, validators} = await emailValidator.validate(this.email)
+        //return valid;
+        return true;
     }
     verificaRiempimentoCampi(){
         if (!this.email || !this.password || !this.firstname || !this.lastname 

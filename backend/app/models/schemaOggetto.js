@@ -10,7 +10,7 @@ const schemaOggetto = new Schema({
     dimension: String,
     difficulty: String,
     codiceDiValidazione: String,
-    provaCampo: String
+    validated: Boolean
     /**
      * Commentati questi campi dello schema, in quanto verranno aggiunti
      * quando verranno implementate le user story che li richiedono
