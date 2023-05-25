@@ -15,6 +15,11 @@ app.use(express.json());// parsing middelware json file
 app.use(express.urlencoded({ extended: true }));
 
 
+app.use((req,res,next) => {
+    console.log(req.method + ' ' + req.url)
+    next()
+})
+
 /**
  * Serve front-end static files
  
@@ -34,10 +39,7 @@ app.use('/api/v1/oggettiTrovati', oggettiTrovati);
 // authenication:
 app.use('/api/v1/authentication', authentication);
 
-app.use((req,res,next) => {
-    console.log(req.method + ' ' + req.url)
-    next()
-})
+
 
 app.get('/login', (req, res)=>{
     res.send(path.basename('../static/login.html'));
