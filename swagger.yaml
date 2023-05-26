@@ -30,7 +30,7 @@ paths:
             'Location':
               schema:
                 type: string
-              description: Link al nuovo giocatore creato
+                description: Link al nuovo giocatore creato
         '400':
           description: 'Non è possibile effetuare la registrazione'
           content:
@@ -118,7 +118,7 @@ paths:
             application/json:
               schema:
                 type: string
-              description: Descrizione dell'errore durante l'aggiunta del moderatore
+                description: Descrizione dell'errore durante l'aggiunta del moderatore
 
   /moderatori/{ID}:
     put:
@@ -149,7 +149,7 @@ paths:
             application/json:
               schema:
                 type: string
-              description: Descrizione dell'errore durante la modifica del moderatore
+                description: Descrizione dell'errore durante la modifica del moderatore
         '401':
           description: Non autorizzato
     get:
@@ -217,7 +217,7 @@ paths:
             'Location':
               schema:
                 type: string
-              description: Link al nuovo amministratore creato
+                description: Link al nuovo amministratore creato
         '400':
           description: 'Non è possibile effetuare la registrazione'
           content:
@@ -304,7 +304,7 @@ paths:
             'Location':
               schema:
                 type: string
-              description: Link al nuovo oggetto inserito
+                description: Link al nuovo oggetto inserito
         '400':
           description: "Non è stato possibile inserire l'oggetto"
           content:
@@ -390,7 +390,7 @@ paths:
         '401':
           description: Non autorizzato   
 
-    /commenti/{ID}:
+  /commenti/{ID}:
     delete:
       tags:
         - moderatore
@@ -568,5 +568,3 @@ components:
         testo:
           type: string
           description: 'Testo del commento'
-
-          
