@@ -7,6 +7,7 @@ const path = require('path');
 const giocatori = require('./giocatori.js');
 const oggetti = require('./oggetti.js');
 const oggettiTrovati = require('./oggettiTrovati.js');
+const oggettiPubblicati = require('./oggettiPubblicati.js');
 const authentication = require('./authentication.js');
 //const tokenChecker = require('./tokenChecker.js');
 
@@ -35,7 +36,7 @@ app.use('/', express.static('static')); // expose also this folder
 app.use('/api/v1/giocatori', giocatori);
 app.use('/api/v1/oggetti', oggetti);
 app.use('/api/v1/oggettiTrovati', oggettiTrovati);
-
+app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
 // authenication:
 app.use('/api/v1/authentication', authentication);
 

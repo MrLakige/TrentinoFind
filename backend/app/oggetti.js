@@ -120,11 +120,11 @@ router.post('', async (req, res) => {
         req.body.title, req.body.description, req.body.dimension, 
         req.body.difficulty, req.body.codiceDiValidazione);
     try{
-        const {isValid, status} = await oObject.inserisciOggettoTrovato();;
+        const {isValid, status} = await oObject.inserisciOggettoTrovato();
         if (isValid){ 
             let oggettoId = oObject.oggettoDB.id;
             res.location("/api/v1/oggetti/" + oggettoId).status(201)
-               .send("Inserimento di un nuovo oggetto avvenuto con successo. Link nel Location header");
+            .send("Inserimento di un nuovo oggetto avvenuto con successo. Link nel Location header");
         }else{
             res.status(400).json({
                 message: status

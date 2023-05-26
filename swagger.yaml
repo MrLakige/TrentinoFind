@@ -177,7 +177,32 @@ paths:
                 description: Descrizione dell'errore
         '401':
           description: Non autorizzato
-    
+          
+  /oggettiPubblicati:
+    post:
+      description: >-
+        Crea una nuova pubblicazione di un oggetto da parte di un 
+        moderatore all'interno del sistema.
+      summary: Crea un nuova pubblicazione di un oggetto da parte di un moderatore.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OggettoPubblicato'
+        required: true
+      responses:
+        '200':
+          description: La pubblicazione è stata effettuata con successo
+        '400':
+          description: "Non è stato possibile fare la pubblicazione dell'oggetto"
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore
+        '401':
+          description: Non autorizzato   
+
     /commenti/{ID}:
     delete:
       tags:
@@ -515,6 +540,15 @@ components:
           type: string
           description: 'Codice di ritrovamento oggetto'
     
+    OggettoPubblicato:
+      type: object
+      required:
+      - oggetto
+      properties:
+        oggetto:
+          type: string
+          description: 'ID oggetto'
+
     Commento:
       type: object
       required:
