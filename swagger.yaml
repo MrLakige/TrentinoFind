@@ -414,6 +414,31 @@ paths:
                 description: Descrizione dell'errore
         '401':
           description: Non autorizzato   
+          
+  /commenti:
+    post:
+      description: >-
+        Crea una nuovo commento su un oggetto da parte di un 
+        giocatore all'interno del sistema.
+      summary: Crea un nuovo commento di un giocatore su un oggetto.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Commento'
+        required: true
+      responses:
+        '200':
+          description: Il commento è stato inserito con successo
+        '400':
+          description: "Non è stato possibile inserire il commento"
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore
+        '401':
+          description: Non autorizzato
 
   /commenti/{ID}:
     delete:
