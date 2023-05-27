@@ -42,8 +42,9 @@ router.post('', async function(req, res) {
 		var options = {
 			expiresIn: 86400 // expires in 24 hours
 		}
-		var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
-		
+		//var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
+		var token = jwt.sign(payload, '', options);
+
 		// query per trovare il tipo
 		switch(user.ruolo){
 			case 0:{	
