@@ -28,7 +28,7 @@ router.post('', async function(req, res) {
 		// check if password hash matches
 		
 		// if (user.password != hash) {
-		if (user.password != rep.body.password) {	
+		if (user.password != req.body.password) {	
 			res.status(405);
 			res.json({ success: false, message: 'Authentication failed. Wrong password.' });
 		}
