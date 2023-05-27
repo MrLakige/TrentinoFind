@@ -15,8 +15,17 @@ class Utente{
         this.phone = phone;
     }
     async creaUtente(){
+        /**
+         * email: String,
+           password: String,
+                ruolo: {
+           type: String,
+           enum:['Giocatore','Moderatore', 'Amministratore'],
+           default: 'Giocatore'
+            }
+         */
         utenteDB = new modelloUtente();
-        giocatoreDB = await giocatoreDB.save();
+        utenteDB = await utenteDB.save();
         let giocatoreId = giocatoreDB.id;
     }
     async verificaEmail(){
