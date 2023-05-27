@@ -1,11 +1,21 @@
 const mongoose = require('mongoose');
-const utenteSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const schemaUtente = new Schema({
     email: String,
     password: String,
-    firstname: String,
-    lastname: String,
-    age: Number,
-    phone: String,
+    ruolo: {
+        type: String,
+        enum:['Giocatore','Moderatore', 'Amministratore'],
+        default: 'Giocatore'
+    }
 });
 
-module.exports = mongoose.model('Utente', utenteSchema);
+//Creazione del modello mongoose, con il quale interagire col database
+const modelloUtente = mongoose.model('Utente', schemaUtente);
+
+modelloUtente.createCollection().then(function(collection) {
+  console.log('Collection Utente is created!');
+});
+
+module.exports = schemaUtente;

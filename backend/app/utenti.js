@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const schemaUtente = require('./models/schemaUtente');
 const emailValidator = require('deep-email-validator');
 const authentication = require('./authentication.js');
 
 class Utente{
+    utenteDB
     constructor(email, password, firstname, lastname, age, phone){
         this.email = email;
         this.password = password;
@@ -11,6 +13,11 @@ class Utente{
         this.lastname = lastname;
         this.age = age;
         this.phone = phone;
+    }
+    async creaUtente(){
+        utenteDB = new modelloUtente();
+        giocatoreDB = await giocatoreDB.save();
+        let giocatoreId = giocatoreDB.id;
     }
     async verificaEmail(){
         //Ritorna una promise.
@@ -59,4 +66,5 @@ class Utente{
 }
 
 module.exports = Utente;
+
 

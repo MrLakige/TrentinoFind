@@ -41,15 +41,51 @@ router.post('', async function(req, res) {
 			expiresIn: 86400 // expires in 24 hours
 		}
 		var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
-		res.status(200);
-		res.json({
-			success: true,
-			message: 'Token Create',
-			token: token,
-			email: user.email,
-			id: user._id,
-			self: "api/v1/" + user._id
-		});
+		
+		// query per trovare il tipo
+		switch(user.ruolo){
+			case 0:{	
+				res.status(200);
+				res.json({
+					success: true,
+					message: 'Token Create',
+					token: token,
+					email: user.email,
+					id: user._id,
+					self: "api/v1/giocatore/" + user._id	// redirect alla pagina giocatore
+				});
+			}break;
+			case 1:{
+				res.status(200);
+				res.json({
+					success: true,
+					message: 'Token Create',
+					token: token,
+					email: user.email,
+					id: user._id,
+					self: "api/v1/moderatore/" + user._id  	// redirect alla pagina moderatore
+				});
+			}break;
+			case 2:{
+				res.status(200);
+				res.json({
+					success: true,
+					message: 'Token Create',
+					token: token,
+					email: user.email,
+					id: user._id,
+					self: "api/v1/amministratore/" + user._id	// redirect alla pagina amministratore
+				});
+			}break;
+			default:{
+				res.status(502);
+				res.json({
+					success: false,
+					message: 'Server Internal error'
+				});
+			};
+		}
+
     } catch (error) {
         console.error(error);
 		res.status(502);

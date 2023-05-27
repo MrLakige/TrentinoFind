@@ -33,6 +33,8 @@ app.use('/EasyLibApp/', express.static( FRONTEND ));
 app.use('/', express.static('static')); // expose also this folder
 
 // app.use('api/v1/utente', utente);
+
+
 app.use('/api/v1/giocatori', giocatori);
 app.use('/api/v1/oggetti', oggetti);
 app.use('/api/v1/oggettiTrovati', oggettiTrovati);
