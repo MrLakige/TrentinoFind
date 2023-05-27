@@ -43,8 +43,10 @@ router.post('', async function(req, res) {
 			expiresIn: 86400 // expires in 24 hours
 		}
 		//var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
-		var token = jwt.sign(payload, '', options);
+		var token = jwt.sign(payload, 'supersecretkey', options);
 
+		console.log('email:'+user.email+'\npassword: '+user.password);
+		
 		// query per trovare il tipo
 		switch(user.ruolo){
 			case 0:{	
