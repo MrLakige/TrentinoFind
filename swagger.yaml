@@ -600,15 +600,15 @@ components:
     Commento:
       type: object
       required:
-        - idgiocatore
-        - idoggetto
+        - idGiocatore
+        - idOggetto
         - data
         - testo
       properties:
-        idgiocatore:
+        idGiocatore:
           type: string
           description: 'ID del giocatore che ha creato questo commento'
-        idoggetto:
+        idOggetto:
           type: string
           description: 'ID dell oggetto a cui è associato questo commento'
         data:
