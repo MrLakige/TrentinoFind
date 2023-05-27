@@ -114,4 +114,25 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+
+//DELETE /api/v1/giocatori/{ID}
+//C'è ancora da aggiungere la verifica della autenticazione
+router.delete('/:id', async (req, res) => {
+    let giocatoreId = req.params.id;
+    //Verifica dell'autorizzazione
+    try{
+        //Poi da mattere un metodo della classe?
+        let giocatoreDB = await modelloGiocatore.findByIdAndDelete(giocatoreId);
+        console.log(giocatoreDB);
+        if(!giocatoreDB){ //Il giocarore specificato non esiste
+            res.status(400).json("ID non valido");
+        }else{
+            res.status(200).json("Rimozione del giocatore avvenuta con successo");
+        }
+    }catch(error){
+        // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
+        res.status(400).json("Formato ID non valido");
+    }
+});
+
 module.exports = router;

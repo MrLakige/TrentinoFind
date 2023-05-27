@@ -96,7 +96,32 @@ paths:
           description: ID del giocatore non valido
         '401':
           description: Non autorizzato
-
+    delete:
+      tags:
+        - giocatore
+      parameters:
+        - name: ID
+          in: path
+          description: ID del giocatore da rimuovere
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: Rimuove un giocatore dal sistema.
+      summary: Rimuove un giocatore.
+      responses:
+        '200':
+          description: Rimozione del giocatore avvenuta con successo
+        '400':
+          description: Rimozione del giocatore non avvenuta
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore che non ha permesso la rimozione
+        '401':
+          description: Non autorizzato
+          
   /moderatori:
     post:
       tags:
