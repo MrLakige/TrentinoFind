@@ -18,4 +18,4 @@ modelloUtente.createCollection().then(function(collection) {
   console.log('Collection Utente is created!');
 });
 
-module.exports = schemaUtente;
+module.exports = modelloUtente;
