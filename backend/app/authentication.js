@@ -23,10 +23,12 @@ router.post('', async function(req, res) {
 			return;
 		}
 		
-		// calculate hash
-		let hash = crypto.pbkdf2Sync(req.body.password, '', 1000, 64, `sha512`).toString(`hex`); 
+		// calculate hash decomentare prima di consegnare
+		// let hash = crypto.pbkdf2Sync(req.body.password, '', 1000, 64, `sha512`).toString(`hex`); 
 		// check if password hash matches
-		if (user.password != hash) {
+		
+		// if (user.password != hash) {
+		if (user.password != password) {	
 			res.status(405);
 			res.json({ success: false, message: 'Authentication failed. Wrong password.' });
 		}
