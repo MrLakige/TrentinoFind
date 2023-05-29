@@ -1,7 +1,18 @@
-/*	creator: Callegari Michele
-	date of last modification: 9/04/2021
+/*	
 
-*/
+
+
+--primary-100:#EE6C4D;
+--primary-200:#cc4f34;
+--primary-300:#7f0000;
+--accent-100:#F7D1B3;
+--accent-200:#927156;
+--text-100:#333333;
+--text-200:#5c5c5c;
+--bg-100:#f4fdfd;
+--bg-200:#eaf3f3;
+--bg-300:#c1caca;
+  */
 
 @media screen and (min-width: 1224px){
 
@@ -10,17 +21,17 @@
         background-repeat: no-repeat;
         background-size:100%;
         background-attachment: fixed;
+        background-color: #f4fdfd;
     }
 
     h1{
             font-size:300%;
             font-family:verdana;
             font-weight:bold;
-            position: absolute;
+            position: center;
             top: 0%;
-            left: 2%;
             text-shadow: 3px 3px black;
-            color:firebrick;
+            color:#EE6C4D;
     }
 
     h2{
@@ -31,7 +42,7 @@
             top: 16%;
             left: 50%;
             text-shadow: 3px 3px black;
-            color:orange;
+            color:lightblue;
     }
 
     /* css menu */
@@ -69,28 +80,14 @@
             color:yellow;
     }
 
-    /* css imagine */
-    #ship{
-            position: absolute;
-            top:40%;
-            left:5%;
-            height:20%;
-            width:30%;
-    }
-
-    #shipimg{
-            clear:both;
-            float:left;
-    }
-
     /* css testo principale */
     #testo{
-            color:gold;
+            color:azure;
             font-weight: bold;
             font-family:monospace;
             font-size:170%;
             position: absolute;
-            top: 37%;
+            top: 40%;
             left: 27%;
             height:37%;
             width:67%;
@@ -181,6 +178,7 @@
         /*background-image:url("../img/space.jpg");*/
         background-repeat: repeat;
         background-size:200%;
+        background-color: aquamarine;
     }
 
     h1{
@@ -191,7 +189,7 @@
             top: 0%;
             left: 2%;
             text-shadow: 3px 3px black;
-            color:firebrick;
+            color:#EE6C4D;
     }
 
     h2{
@@ -352,6 +350,7 @@
        /* background-image:url("../img/space.jpg");*/
         background-repeat: no-repeat;
         background-size:350%;
+        background-color: aquamarine;
     }
 
     h1{
@@ -362,7 +361,7 @@
             top: 0%;
             left: 23%;
             text-shadow: 3px 3px black;
-            color:firebrick;
+            color:#EE6C4D;
     }
 
     h2{
