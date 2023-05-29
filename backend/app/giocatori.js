@@ -4,6 +4,7 @@ const modelloGiocatore = require('./models/schemaGiocatore'); // get our mongoos
 
 const Utente = require("./utenti");
 class Giocatore extends Utente{
+    giocatoreDB
     constructor(email, password, firstname, lastname, age, phone){
         super(email, password, firstname, lastname, age, phone);
     }
@@ -13,12 +14,7 @@ class Giocatore extends Utente{
      * inserita in fase di registrazione
      */
     async verificaGiocatoreEsistente(){
-        let giocatoreDB = await modelloGiocatore.find({ email: this.email }).exec();
-        if(!giocatoreDB.length){ //if null
-            return false;
-        }else{
-            return true;
-        }
+        return await super.verificaUtenteEsistente();
     }
     async verificaRegistrazione(){
         let {isValid, error } = await super.verificaRegistrazione();
@@ -33,8 +29,33 @@ class Giocatore extends Utente{
         }
         return {isValid, error};
     }
+    async creaGiocatore(){
+        let {isValid, error } = await this.verificaRegistrazione();
+        if(isValid){
+            await super.creaUtente("Giocatore")
+            this.giocatoreDB = new modelloGiocatore(this.filtraInformazioniDB());
+            this.giocatoreDB = await this.giocatoreDB.save();
+        }
+        return {isValid, error};
+    }
+    filtraInformazioniDB(){
+        return {
+            email: this.email,
+            password: this.password,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            age: this.age,
+            phone: this.phone
+            }
+    }
 }
 
+/**
+ * 
+ * @param {*} giocatoreDB 
+ * @returns Funzione per filtrare le informazioni dell'oggetto giocatoreDB
+ *          che arrivano dal database verso l'esterno
+ */
 function filtraInformazioni(giocatoreDB){
     giocatoreDB = [giocatoreDB].map( (giocatoreDB) => {
         return {
@@ -55,12 +76,10 @@ router.post('', async (req, res) => {
     let gObject = new Giocatore(req.body.email, req.body.password, req.body.firstname, 
         req.body.lastname, req.body.age, req.body.phone);
     
-    const {isValid, error} = await gObject.verificaRegistrazione();
-    
+    const {isValid, error} = await gObject.creaGiocatore();
+
     if (isValid){ 
-        let giocatoreDB = new modelloGiocatore(gObject);
-        giocatoreDB = await giocatoreDB.save();
-        let giocatoreId = giocatoreDB.id;
+        let giocatoreId = gObject.giocatoreDB.id
         res.location("/api/v1/giocatori/" + giocatoreId).status(201).send();
     }else{
         res.status(400).json({
