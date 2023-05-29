@@ -49,7 +49,7 @@ router.post('', async function(req, res) {
 		
 		// query per trovare il tipo
 		switch(user.ruolo){
-			case 0:{	
+			case 'Giocatore':{	
 				res.status(200);
 				res.json({
 					success: true,
@@ -60,7 +60,7 @@ router.post('', async function(req, res) {
 					self: "api/v1/giocatore/" + user._id	// redirect alla pagina giocatore
 				});
 			}break;
-			case 1:{
+			case 'Moderatore':{
 				res.status(200);
 				res.json({
 					success: true,
@@ -71,7 +71,7 @@ router.post('', async function(req, res) {
 					self: "api/v1/moderatore/" + user._id  	// redirect alla pagina moderatore
 				});
 			}break;
-			case 2:{
+			case 'Amministratore':{
 				res.status(200);
 				res.json({
 					success: true,

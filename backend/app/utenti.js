@@ -6,24 +6,24 @@ const authentication = require('./authentication.js');
 
 class Utente{
     utenteDB
-    constructor(email, password, firstname, lastname, age, phone){
+    constructor(email, password, firstname, lastname, age, ruolo){
         this.email = email;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
-        this.phone = phone;
+        this.roulo= ruolo;
     }
     async creaUtente(){
-        /**
-         * email: String,
-           password: String,
+        /*
+        email: String,
+        password: String,
                 ruolo: {
            type: String,
            enum:['Giocatore','Moderatore', 'Amministratore'],
            default: 'Giocatore'
             }
-         */
+            */
         utenteDB = new modelloUtente();
         utenteDB = await utenteDB.save();
         let giocatoreId = giocatoreDB.id;
