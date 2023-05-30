@@ -12,7 +12,7 @@ const schemaModeratore = new Schema({
 });
 
 //Creazione del modello mongoose, con il quale interagire col database
-const modelloModeratore = mongoose.model('Giocatore', schemaModeratore);
+const modelloModeratore = mongoose.model('Moderatore', schemaModeratore);
 
 modelloModeratore.createCollection().then(function(collection) {
   console.log('Collection Moderatore is created!');
