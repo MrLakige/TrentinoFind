@@ -42,12 +42,6 @@ app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
 // authenication:
 app.use('/api/v1/authentication', authentication);
 
-
-
-app.get('/login', (req, res)=>{
-    res.send(path.basename('../static/login.html'));
-});
-
 // Default 404 handler 
 app.use((req, res) => {
     res.status(404);

@@ -31,6 +31,7 @@ router.post('', async function(req, res) {
 		if (user.password != req.body.password) {	
 			res.status(405);
 			res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+			return;
 		}
 		
 		// if user is found and password is right create a token
@@ -57,7 +58,8 @@ router.post('', async function(req, res) {
 					token: token,
 					email: user.email,
 					id: user._id,
-					self: "api/v1/giocatore/" + user._id	// redirect alla pagina giocatore
+					//self: "api/v1/giocatore/" + user._id	// redirect alla pagina giocatore
+					self: 'giocatore.html' // usato solo per testing
 				});
 			}break;
 			case 'Moderatore':{
@@ -68,7 +70,8 @@ router.post('', async function(req, res) {
 					token: token,
 					email: user.email,
 					id: user._id,
-					self: "api/v1/moderatore/" + user._id  	// redirect alla pagina moderatore
+					//self: "api/v1/moderatore/" + user._id  	// redirect alla pagina moderatore
+					self: 'moderatore.html' // usato solo per testing
 				});
 			}break;
 			case 'Amministratore':{
@@ -79,7 +82,8 @@ router.post('', async function(req, res) {
 					token: token,
 					email: user.email,
 					id: user._id,
-					self: "api/v1/amministratore/" + user._id	// redirect alla pagina amministratore
+					//self: "api/v1/amministratore/" + user._id	// redirect alla pagina amministratore
+					self: 'amministratore.html' // usato solo per testing
 				});
 			}break;
 			default:{
@@ -90,12 +94,12 @@ router.post('', async function(req, res) {
 				});
 			};
 		}
-
+		return;
     } catch (error) {
         console.error(error);
-		res.set('error','internal server error');
 		res.status(502);
         res.json({ success: false, message: 'Server error' });
+		return;
     }
 
 });
