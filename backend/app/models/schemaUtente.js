@@ -7,11 +7,7 @@ const schemaUtente = new Schema({
     firstname : String,
     lastname : String,
     age : Number,
-    ruolo: {
-        type: String,
-        enum:['Giocatore','Moderatore', 'Amministratore'],
-        default: 'Giocatore'
-    }
+    ruolo: String  
 });
 
 //Creazione del modello mongoose, con il quale interagire col database
