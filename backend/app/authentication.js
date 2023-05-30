@@ -93,7 +93,7 @@ router.post('', async function(req, res) {
 
     } catch (error) {
         console.error(error);
-		res.setHeader("error",502);
+		res.set('error','internal server error');
 		res.status(502);
         res.json({ success: false, message: 'Server error' });
     }
