@@ -45,7 +45,7 @@ router.post('', async function(req, res) {
 		//var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
 		var token = jwt.sign(payload, 'supersecretkey', options);
 
-		console.log('email:'+user.email+'\npassword: '+user.password+'\ntype:'+user.ruolo);
+		console.log('email:'+user.email+'\npassword: '+user.password+'\nroulo:'+user.ruolo);
 		
 		// query per trovare il tipo
 		switch(user.ruolo){
@@ -93,6 +93,7 @@ router.post('', async function(req, res) {
 
     } catch (error) {
         console.error(error);
+		res.setHeader("error",502);
 		res.status(502);
         res.json({ success: false, message: 'Server error' });
     }
