@@ -29,7 +29,7 @@ class Utente{
             return true;
           }
     }
-    async verificaRegistrazione(){
+    async verificaCorrettezzaCampi(){
         let isValid = false;
         let error = "Undefined";
         if (!this.verificaRiempimentoCampi()){
