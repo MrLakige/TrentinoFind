@@ -9,7 +9,7 @@ const crypto = require('crypto');
 // route to authenticate and get a new token
 // ---------------------------------------------------------
 router.post('', async function(req, res) {
-	
+	console.log("checking credentials");
 	try {
 		// find the user
 		let user = await modelloUtente.findOne({
