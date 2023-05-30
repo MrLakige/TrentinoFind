@@ -45,7 +45,7 @@ router.post('', async function(req, res) {
 		//var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
 		var token = jwt.sign(payload, 'supersecretkey', options);
 
-		console.log('email:'+user.email+'\npassword: '+user.password+'\ntype:'+user.type);
+		console.log('email:'+user.email+'\npassword: '+user.password+'\ntype:'+user.ruolo);
 		
 		// query per trovare il tipo
 		switch(user.ruolo){
