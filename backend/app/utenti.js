@@ -24,9 +24,7 @@ class Utente{
            default: 'Giocatore'
             }
             */
-
-            let gObject = new Utente("test@test", "password", "test", "test", 21, "Giocatore");
-
+           
         utenteDB = new modelloUtente();
         utenteDB = await utenteDB.save();
         let giocatoreId = giocatoreDB.id;
@@ -77,6 +75,9 @@ class Utente{
     ModificaInformazioni(){}
 }
 
+module.exports 
+
 module.exports = Utente;
+
 
 
