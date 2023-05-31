@@ -7,6 +7,7 @@ const schemaUtente = new Schema({
     firstname : String,
     lastname : String,
     age : Number,
+    phone : Number,
     ruolo: String  
 });
 

@@ -13,7 +13,7 @@ class Utente{
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
-        this.roulo= ruolo;
+        this.phone= phone;
     }
     async creaUtente(){
         /*
@@ -86,4 +86,4 @@ class Utente{
     }
 }
 
-module.exports 
+module.exports = Utente;
