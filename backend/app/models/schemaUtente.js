@@ -4,11 +4,10 @@ const Schema = mongoose.Schema;
 const schemaUtente = new Schema({
     email: String,
     password: String,
-    ruolo: {
-        type: String,
-        enum:['Giocatore','Moderatore', 'Amministratore'],
-        default: 'Giocatore'
-    }
+    firstname : String,
+    lastname : String,
+    age : Number,
+    ruolo: String  
 });
 
 //Creazione del modello mongoose, con il quale interagire col database

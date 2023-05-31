@@ -12,11 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           var response = JSON.parse(xhr.responseText);
-          
+          console.log(response);
           if (xhr.status === 200) {
             // Successful login
             document.getElementById('message').innerHTML = 'Login successful!';
-            // Redirect to another page or perform any other actions
+            if(response.self){
+              console.log(response.self);
+              window.location.href=response.self+'?userId='+response.userId;
+            }
           } else {
             // Failed login
             document.getElementById('message').innerHTML = 'Login failed. Please try again.';

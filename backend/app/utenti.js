@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const modelloUtente = require('./models/schemaUtente');
 const emailValidator = require('deep-email-validator');
 const authentication = require('./authentication.js');
@@ -12,7 +13,22 @@ class Utente{
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
-        this.phone = phone;
+        this.roulo= ruolo;
+    }
+    async creaUtente(){
+        /*
+        email: String,
+        password: String,
+                ruolo: {
+           type: String,
+           enum:['Giocatore','Moderatore', 'Amministratore'],
+           default: 'Giocatore'
+            }
+            */
+           
+        utenteDB = new modelloUtente();
+        utenteDB = await utenteDB.save();
+        let giocatoreId = giocatoreDB.id;
     }
     async verificaEmail(){
         //Ritorna una promise.
@@ -70,4 +86,4 @@ class Utente{
     }
 }
 
-module.exports = Utente;
+module.exports 

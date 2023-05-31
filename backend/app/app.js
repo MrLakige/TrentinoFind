@@ -35,6 +35,8 @@ app.use('/EasyLibApp/', express.static( FRONTEND ));
 app.use('/', express.static('static')); // expose also this folder
 
 // app.use('api/v1/utente', utente);
+
+
 app.use('/api/v1/giocatori', giocatori);
 app.use('/api/v1/moderatori', moderatori);
 app.use('/api/v1/oggetti', oggetti);
@@ -43,12 +45,6 @@ app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
 app.use('/api/v1/commenti', commenti);
 // authenication:
 app.use('/api/v1/authentication', authentication);
-
-
-
-app.get('/login', (req, res)=>{
-    res.send(path.basename('../static/login.html'));
-});
 
 // Default 404 handler 
 app.use((req, res) => {
