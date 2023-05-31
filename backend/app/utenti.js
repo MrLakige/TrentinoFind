@@ -15,21 +15,6 @@ class Utente{
         this.age = age;
         this.phone= phone;
     }
-    async creaUtente(){
-        /*
-        email: String,
-        password: String,
-                ruolo: {
-           type: String,
-           enum:['Giocatore','Moderatore', 'Amministratore'],
-           default: 'Giocatore'
-            }
-            */
-           
-        utenteDB = new modelloUtente();
-        utenteDB = await utenteDB.save();
-        let giocatoreId = giocatoreDB.id;
-    }
     async verificaEmail(){
         //Ritorna una promise.
         //const {valid, reason, validators} = await emailValidator.validate(this.email)
@@ -76,6 +61,10 @@ class Utente{
         this.utenteDB = new modelloUtente({
             email: this.email,
             password: this.password,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            age: this.age,
+            phone: this.phone,
             ruolo: ruoloUtente
         });
         this.utenteDB = await this.utenteDB.save();
