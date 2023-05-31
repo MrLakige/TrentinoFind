@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('login.html').addEventListener('submit', function(event) {
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent form submission
       
       var email = document.getElementById('email').value;
@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
       xhr.setRequestHeader('Content-Type', 'application/json');
       
       xhr.onreadystatechange = function() {
+        //redirect to giocatore.html
+        location.href = 'giocatore.html';          
         if (xhr.readyState === 4) {
           var response = JSON.parse(xhr.responseText);
-          location.href = 'giocatore.html';          
+    
           /*if (xhr.status === 200) {
             // Successful login
             document.getElementById('message').innerHTML = 'Login successful!';
