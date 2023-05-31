@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const schemaUtente = require('./models/schemaUtente');
+
+const modelloUtente = require('./models/schemaUtente');
 const emailValidator = require('deep-email-validator');
 const authentication = require('./authentication.js');
 
 class Utente{
     utenteDB
-    constructor(email, password, firstname, lastname, age, ruolo){
+    constructor(email, password, firstname, lastname, age, phone){
         this.email = email;
         this.password = password;
         this.firstname = firstname;
@@ -31,8 +32,8 @@ class Utente{
     }
     async verificaEmail(){
         //Ritorna una promise.
-        //console.log(await emailValidator.validate(this.email));
         //const {valid, reason, validators} = await emailValidator.validate(this.email)
+        //console.log({valid, reason, validators});
         //return valid;
         return true;
     }
@@ -44,17 +45,14 @@ class Utente{
             return true;
           }
     }
-    async verificaRegistrazione(){
+    async verificaCorrettezzaCampi(){
         let isValid = false;
         let error = "Undefined";
-
         if (!this.verificaRiempimentoCampi()){
             isValid = false;
             error = "Alcuni campi mancano";
             return {isValid,error};
         }
-
-        
         const valid = await this.verificaEmail();
         if(valid){
             isValid = true;
@@ -63,21 +61,29 @@ class Utente{
             isValid = false;
             error = "Indirizzo email non valido";
         }
-
         return {isValid,error};
     }
-    
-    
+    async verificaUtenteEsistente(){
+        console.log("Verifica Utente Esistente")
+        this.utenteDB = await modelloUtente.find({ email: this.email }).exec();
+        if(!this.utenteDB.length) {
+            //Non è presente nessun utente nel sistema con this.email
+            return false;
+        }
+        return true;
+    }
+    async creaUtente(ruoloUtente){
+        this.utenteDB = new modelloUtente({
+            email: this.email,
+            password: this.password,
+            ruolo: ruoloUtente
+        });
+        this.utenteDB = await this.utenteDB.save();
+        return;
+    }
     Autenticazione(){
         authentication.checkCredential();
     }
-    VisuallizzaInformazioni(){}
-    ModificaInformazioni(){}
 }
 
 module.exports 
-
-module.exports = Utente;
-
-
-
