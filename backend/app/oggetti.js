@@ -54,7 +54,7 @@ class Oggetto{
         /** Istanzio un modello dell'oggetto ricevuto
          *  sulla base dello schemaOggetto
          * */
-        this.oggettoDB = new modelloOggetto(this.filtraInformazioniOggettoInseritoDB());
+        this.oggettoDB = new modelloOggetto(this.filtraInformazioniDB());
         // salvo l'oggetto nel database
         this.oggettoDB = await this.oggettoDB.save();
         //Recupero l'insieme di oggetti inseriti dal gioctore
@@ -69,7 +69,7 @@ class Oggetto{
      * Metodo interno per filtrare le informazioni della classe Oggetto
      * che andranno inserite nel documento del DB della collezione Oggetto
      */
-    filtraInformazioniOggettoInseritoDB(){
+    filtraInformazioniDB(){
         return {
             idGiocatore: this.IDgiocatore,
             location: this.location,

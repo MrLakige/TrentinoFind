@@ -76,7 +76,7 @@ class Commento{
 }
 
 
-//POST /api/v1/commento
+//POST /api/v1/commenti
 router.post('', async (req, res) => {
 
     let cObject = new Commento(req.body.idGiocatore, req.body.idOggetto, req.body.data, req.body.testo);
@@ -93,6 +93,24 @@ router.post('', async (req, res) => {
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
     }    
+});
+
+
+//DELETE /api/v1/commenti
+router.delete('/:id', async (req, res) => {
+    let commentoId = req.params.id;
+    //Verifica dell'autorizzazione
+    try{
+        let commentoDB = await modelloCommento.findByIdAndDelete(commentoId);
+        if(!commentoDB){ //Il commento specificato non esiste
+            res.status(400).json("ID non valido");
+        }else{
+            res.status(200).json("Commento cancellato con successo");
+        }
+    }catch(error){
+        // This catch CastError when commentoId cannot be casted to mongoose ObjectId
+        res.status(400).json("Formato ID non valido");
+    }   
 });
 
 module.exports = router;
