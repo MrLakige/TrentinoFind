@@ -18,10 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('message').innerHTML = 'Login successful!';
             if(response.self){
               console.log(response.self);
-              window.location.href=response.self;
+              window.location.href=response.self+'?userId='+response.userId;
             }
-            
-
           } else {
             // Failed login
             document.getElementById('message').innerHTML = 'Login failed. Please try again.';

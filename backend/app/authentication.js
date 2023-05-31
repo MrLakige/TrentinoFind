@@ -46,7 +46,7 @@ router.post('', async function(req, res) {
 		//var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
 		var token = jwt.sign(payload, 'supersecretkey', options);
 
-		console.log('email:'+user.email+'\npassword: '+user.password+'\nroulo:'+user.ruolo);
+		console.log('email:'+user.email+'\npassword: '+user.password+'\nroulo:'+user.ruolo+'\nuser id:'+user._id);
 		
 		// query per trovare il tipo
 		switch(user.ruolo){
@@ -57,9 +57,8 @@ router.post('', async function(req, res) {
 					message: 'Token Create',
 					token: token,
 					email: user.email,
-					id: user._id,
-					//self: "api/v1/giocatore/" + user._id	// redirect alla pagina giocatore
-					self: 'giocatore.html' // usato solo per testing
+					userId: user._id,
+					self: 'giocatore.html' // redirect alla pagina giocatore
 				});
 			}break;
 			case 'Moderatore':{
@@ -69,9 +68,8 @@ router.post('', async function(req, res) {
 					message: 'Token Create',
 					token: token,
 					email: user.email,
-					id: user._id,
-					//self: "api/v1/moderatore/" + user._id  	// redirect alla pagina moderatore
-					self: 'moderatore.html' // usato solo per testing
+					userId: user._id, 
+					self: 'moderatore.html' // redirect alla pagina moderatore
 				});
 			}break;
 			case 'Amministratore':{
@@ -81,9 +79,8 @@ router.post('', async function(req, res) {
 					message: 'Token Create',
 					token: token,
 					email: user.email,
-					id: user._id,
-					//self: "api/v1/amministratore/" + user._id	// redirect alla pagina amministratore
-					self: 'amministratore.html' // usato solo per testing
+					userId: user._id,
+					self: 'amministratore.html' // redirect alla pagina amministratore
 				});
 			}break;
 			default:{
