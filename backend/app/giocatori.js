@@ -52,7 +52,7 @@ class Giocatore extends Utente{
  * @returns Funzione per filtrare le informazioni dell'oggetto giocatoreDB
  *          che arrivano dal database verso l'esterno
  */
-async function filtraInformazioniGiocatore(idGiocatore){
+async function ottieniInformazioniGiocatore(idGiocatore){
     let giocatoreDB = await modelloGiocatore.findById(idGiocatore);
     let idUser = giocatoreDB.idUser;
     let utenteDB = await modelloUtente.findById(idUser);
@@ -93,7 +93,7 @@ router.post('', async (req, res) => {
 //C'è ancora da aggiungere la verifica della autenticazione
 router.get('/:id', async (req, res) => {
     try {
-        let giocatore = await filtraInformazioniGiocatore(req.params.id)
+        let giocatore = ottieniInformazioniGiocatore(req.params.id)
         if(!giocatore){
             res.status(400).json("ID non valido");
         }else{
@@ -113,7 +113,7 @@ router.put('/:id', async (req, res) => {
     try{
         const {isValid, error} = await gObject.modificaGiocatore(req.params.id);
         if (isValid){
-            res.status(200).json(await filtraInformazioniGiocatore(req.params.id));
+            res.status(200).json(ottieniInformazioniGiocatore(req.params.id));
         }else{//No, la modifica non si può fare
             res.status(400).json({
                 //Descrizione dell'errore che non ha permesso la modifica

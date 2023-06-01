@@ -1,14 +1,10 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Creazione dello schema giocatore
 const schemaModeratore = new Schema({
-    email: String,
-    password: String,
-    firstname: String,
-    lastname: String,
-    age: String,
-    phone: String,
+  idUser: ObjectId
 });
 
 //Creazione del modello mongoose, con il quale interagire col database

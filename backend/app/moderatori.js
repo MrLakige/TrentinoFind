@@ -1,108 +1,85 @@
 const express = require('express');
 const router = express.Router();
 const modelloModeratore = require('./models/schemaModeratore'); // get our mongoose model
+const modelloUtente = require('./models/schemaUtente');
 const Utente = require("./utenti");
 
 class Moderatore extends Utente{
-    moderatoreDB
+    ModeratoreDB
+    idUser
     constructor(email, password, firstname, lastname, age, phone){
         super(email, password, firstname, lastname, age, phone);
     }
-    /**
-     * Questa funzione si occupa di verificare se all'interno
-     * del database è già presente un giocatore con la stessa email
-     * inserita in fase di registrazione
-     */
-    async verificaModeratoreEsistente(){
-        return await super.verificaUtenteEsistente();
-    }
-    async verificaRegistrazione(){
-        let {isValid, error } = await super.verificaCorrettezzaCampi();
-        //Se il body è corretto verifico all'interno del database
-        //se esiste un account già presente con la stessa email
-        if(isValid){
-            let thereIsSomeoneElse = await this.verificaModeratoreEsistente();
-            if(thereIsSomeoneElse){
-                isValid = false;
-                error = "Esiste già un account con questa email"
-            }
-        }
-        return {isValid, error};
-    }
     async creaModeratore(){
-        let {isValid, error } = await this.verificaRegistrazione();
+        let {isValid, error } = await super.verificaRegistrazione();
         if(isValid){
-            await super.creaUtente("Moderatore")
-            this.moderatoreDB = new modelloModeratore(this.filtraInformazioniDB());
-            this.moderatoreDB = await this.moderatoreDB.save();
+            this.idUser = await super.creaUtente("Moderatore")
+            this.ModeratoreDB = new modelloModeratore({idUser: this.idUser});
+            this.ModeratoreDB = await this.ModeratoreDB.save();
         }
         return {isValid, error};
     }
-    async modificaModeratore(moderatoreId){
+    async modificaModeratore(idModeratore){
+        // 1) Verifico se i campi della richiesta sono corretti (email valida e campi pieni)
         let {isValid, error} = await super.verificaCorrettezzaCampi()
         if(!isValid) return {isValid, error}
-        //Verifico inanzitutto la correttezza dell'id
-        this.moderatoreDB = await modelloModeratore.findById(moderatoreId);
-        if(!this.moderatoreDB){//Il giocatore non esiste
+        // 2) Verifico se l'id del Moderatore è corretto
+        this.ModeratoreDB = await modelloModeratore.findById(idModeratore);
+        if(!this.ModeratoreDB){// L'id del Moderatore non è corretto
             isValid = false
             error = "ID non valido"
             return {isValid, error};
         }
-        /**
-         * Se i campi della richiesta sono corretti, e l'indirizzo email è diverso
-         * da quello precedente (presente ore nel DB), e non esiste alcun utente
-         * che ha quell'indirizzo email allora posso effettuare la modifica,
-         * allo stesso modo effetuo la modifica se l'indirizzo email della richiesta è
-         * uguale a quello precedente presente nel database.
-         */
-        let thereIsSomeoneElse = await super.verificaUtenteEsistente();
-        if((( this.email != this.moderatoreDB.email) & (thereIsSomeoneElse))){
-            isValid = false
-            error = "Esiste già un account con questa email"
-            return {isValid, error};
-        }else{
-            await modelloModeratore.findByIdAndUpdate(moderatoreId,this.filtraInformazioniDB());
-            this.moderatoreDB = await modelloModeratore.findById(moderatoreId);
+        this.utenteDB = await modelloUtente.findById(this.ModeratoreDB.idUser)
+        // 3) Verifico se la modifica riguarda anche l'indirizzo email
+        if( this.email != this.utenteDB.email ){
+            // 4) Se si verifico se l'indirizzo email è gia in uso da un altro utente
+            if(await super.verificaUtenteEsistente()){
+                isValid = false
+                error = "Esiste già un account con questa email"
+                return {isValid, error};
+            }
         }
+        // 5) La modifica può essere effettuate
+        await super.modificaUtente(this.ModeratoreDB.idUser)
         return {isValid, error};
     }
-    filtraInformazioniDB(){
+}
+
+/**
+ * 
+ * @param {*} ModeratoreDB 
+ * @returns Funzione per filtrare le informazioni dell'oggetto ModeratoreDB
+ *          che arrivano dal database verso l'esterno
+ */
+async function ottieniInformazioniModeratore(idModeratore){
+    let ModeratoreDB = await modelloModeratore.findById(idModeratore);
+    let idUser = ModeratoreDB.idUser;
+    let utenteDB = await modelloUtente.findById(idUser);
+    if(!ModeratoreDB || !utenteDB){
+        return false;
+    }else{
         return {
-            email: this.email,
-            password: this.password,
-            firstname: this.firstname,
-            lastname: this.lastname,
-            age: this.age,
-            phone: this.phone
-            }
+            email: utenteDB.email,
+            firstname: utenteDB.firstname,
+            lastname: utenteDB.lastname,
+            age: utenteDB.age,
+            phone: utenteDB.phone
+        }
     }
 }
 
-function filtraInformazioni(moderatoreDB){
-    moderatoreDB = [moderatoreDB].map( (moderatoreDB) => {
-        return {
-            email: moderatoreDB.email,
-            password: moderatoreDB.password,
-            firstname: moderatoreDB.firstname,
-            lastname: moderatoreDB.lastname,
-            age: moderatoreDB.age,
-            phone: moderatoreDB.phone
-        };
-    });
-    return moderatoreDB;
-}
-
-//POST /api/v1/moderatori
+//POST /api/v1/giocatori
 router.post('', async (req, res) => {
-
-    let mObject = new Moderatore(req.body.email, req.body.password, req.body.firstname, 
+    // Creazione di un oggetto di tipo Moderatore sulla base della richiesta
+    let gObject = new Moderatore(req.body.email, req.body.password, req.body.firstname, 
         req.body.lastname, req.body.age, req.body.phone);
-    
-    const {isValid, error} = await mObject.creaModeratore();
+    // Creo il Moderatore chiamando il metodo creaModeratore()
+    const {isValid, error} = await gObject.creaModeratore();
 
     if (isValid){ 
-        let moderatoreId = mObject.moderatoreDB.id
-        res.location("/api/v1/moderatori/" + moderatoreId).status(201).send();
+        let ModeratoreId = gObject.ModeratoreDB.id
+        res.location("/api/v1/moderatori/" + ModeratoreId).status(201).send();
     }else{
         res.status(400).json({
             message: error
@@ -110,26 +87,31 @@ router.post('', async (req, res) => {
     }
 });
 
-//GET /api/v1/moderatori/{ID}
+//GET /api/v1/giocatori/{ID}
 //C'è ancora da aggiungere la verifica della autenticazione
 router.get('/:id', async (req, res) => {
-    let moderatoreDB = await modelloModeratore.findById(req.params.id);
-    if(!moderatoreDB){ //if null
-        res.status(400).json("ID non valido");
-    }else{
-        res.status(200).json(filtraInformazioni(moderatoreDB));
+    try {
+        let Moderatore = await ottieniInformazioniModeratore(req.params.id)
+        if(!Moderatore){
+            res.status(400).json("ID non valido");
+        }else{
+            res.status(200).send(Moderatore) 
+        }
+    } catch (error){
+        res.status(400).json("Formato ID non valido");
     }
 });
 
-//PUT /api/v1/moderatori/{ID}
+//PUT /api/v1/giocatori/{ID}
 //C'è ancora da aggiungere la verifica della autenticazione
 router.put('/:id', async (req, res) => {
-    let mObject = new Moderatore(req.body.email, req.body.password, req.body.firstname, 
+    // Creazione di un oggetto di tipo Moderatore sulla base della richiesta
+    let gObject = new Moderatore(req.body.email, req.body.password, req.body.firstname, 
         req.body.lastname, req.body.age, req.body.phone);
     try{
-        const {isValid, error} = await mObject.modificaModeratore(req.params.id);
+        const {isValid, error} = await gObject.modificaModeratore(req.params.id);
         if (isValid){
-            res.status(200).json(filtraInformazioni(mObject.moderatoreDB));
+            res.status(200).json(await ottieniInformazioniModeratore(req.params.id));
         }else{//No, la modifica non si può fare
             res.status(400).json({
                 //Descrizione dell'errore che non ha permesso la modifica
@@ -138,7 +120,30 @@ router.put('/:id', async (req, res) => {
         }
     }catch(error){
         console.log(error)
-        // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
+        // This catch CastError when ModeratoreId cannot be casted to mongoose ObjectId
+        res.status(400).json("Formato ID non valido");
+    }
+});
+
+
+//DELETE /api/v1/giocatori/{ID}
+//C'è ancora da aggiungere la verifica della autenticazione
+router.delete('/:id', async (req, res) => {
+    let ModeratoreId = req.params.id;
+    //Verifica dell'autorizzazione
+    try{
+        //Poi da mattere un metodo della classe?
+        let ModeratoreDB = await modelloModeratore.findByIdAndDelete(ModeratoreId);
+        let utenteDB = await modelloUtente.findByIdAndDelete(ModeratoreDB.idUser);
+        console.log(ModeratoreDB);
+        console.log(utenteDB);
+        if(!ModeratoreDB){ //Il giocarore specificato non esiste
+            res.status(400).json("ID non valido");
+        }else{
+            res.status(200).json("Rimozione del Moderatore avvenuta con successo");
+        }
+    }catch(error){
+        // This catch CastError when ModeratoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
     }
 });
