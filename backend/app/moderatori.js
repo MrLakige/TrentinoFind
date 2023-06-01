@@ -69,7 +69,7 @@ async function ottieniInformazioniModeratore(idModeratore){
     }
 }
 
-//POST /api/v1/giocatori
+//POST /api/v1/moderatori
 router.post('', async (req, res) => {
     // Creazione di un oggetto di tipo Moderatore sulla base della richiesta
     let gObject = new Moderatore(req.body.email, req.body.password, req.body.firstname, 
@@ -87,7 +87,7 @@ router.post('', async (req, res) => {
     }
 });
 
-//GET /api/v1/giocatori/{ID}
+//GET /api/v1/moderatori/{ID}
 //C'è ancora da aggiungere la verifica della autenticazione
 router.get('/:id', async (req, res) => {
     try {
@@ -102,7 +102,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-//PUT /api/v1/giocatori/{ID}
+//PUT /api/v1/moderatori/{ID}
 //C'è ancora da aggiungere la verifica della autenticazione
 router.put('/:id', async (req, res) => {
     // Creazione di un oggetto di tipo Moderatore sulla base della richiesta
@@ -126,7 +126,7 @@ router.put('/:id', async (req, res) => {
 });
 
 
-//DELETE /api/v1/giocatori/{ID}
+//DELETE /api/v1/moderatori/{ID}
 //C'è ancora da aggiungere la verifica della autenticazione
 router.delete('/:id', async (req, res) => {
     let ModeratoreId = req.params.id;
