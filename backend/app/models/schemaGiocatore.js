@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -5,7 +6,7 @@ const Schema = mongoose.Schema;
 const schemaGiocatore = new Schema({
     idOggettiTrovati: Array,
     idOggettiNascosti: Array,
-    idUser:String
+    idUser: ObjectId
 });
 
 //Creazione del modello mongoose, con il quale interagire col database

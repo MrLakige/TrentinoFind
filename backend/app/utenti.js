@@ -49,7 +49,6 @@ class Utente{
         return {isValid,error};
     }
     async verificaUtenteEsistente(){
-        console.log("Verifica Utente Esistente")
         this.utenteDB = await modelloUtente.find({ email: this.email }).exec();
         if(!this.utenteDB.length) {
             //Non è presente nessun utente nel sistema con this.email
@@ -57,6 +56,20 @@ class Utente{
         }
         return true;
     }
+    async verificaRegistrazione(){
+        let {isValid, error } = await this.verificaCorrettezzaCampi();
+        //Se il body è corretto verifico all'interno del database
+        //se esiste un account già presente con la stessa email
+        if(isValid){
+            let thereIsSomeoneElse = await this.verificaUtenteEsistente();
+            if(thereIsSomeoneElse){
+                isValid = false;
+                error = "Esiste già un account con questa email"
+            }
+        }
+        return {isValid, error};
+    }
+
     async creaUtente(ruoloUtente){
         this.utenteDB = new modelloUtente({
             email: this.email,
@@ -68,7 +81,19 @@ class Utente{
             ruolo: ruoloUtente
         });
         this.utenteDB = await this.utenteDB.save();
-        return;
+        return this.utenteDB.id;
+    }
+    async modificaUtente(idUser, ruoloUtente){
+        await modelloUtente.findByIdAndUpdate(idUser,{
+            email: this.email,
+            password: this.password,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            age: this.age,
+            phone: this.phone,
+            ruolo: ruoloUtente
+        });
+        this.utenteDB = await modelloUtente.findById(idUser);
     }
     Autenticazione(){
         authentication.checkCredential();
