@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const modelloCommento = require('./models/schemaCommento');
 const modelloGiocatore = require('./models/schemaGiocatore'); 
 const modelloOggetto = require('./models/schemaOggetto');
+const log = require('../logger');
 
 const router = express.Router();
 
@@ -89,7 +90,8 @@ router.post('', async (req, res) => {
             res.status(201).send("Il commento è stato inserito con successo");
         }
     } catch  (error){
-        console.log(error)
+        //console.log(error)
+        log.error(error);
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
     }    
@@ -109,6 +111,7 @@ router.delete('/:id', async (req, res) => {
         }
     }catch(error){
         // This catch CastError when commentoId cannot be casted to mongoose ObjectId
+        log.warning(error);
         res.status(400).json("Formato ID non valido");
     }   
 });

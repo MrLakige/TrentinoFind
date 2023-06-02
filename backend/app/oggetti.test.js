@@ -3,6 +3,7 @@
 
 const request = require('supertest');
 const app = require('./app');
+const log = require('../logger');
 
 describe('GET /api/v1/oggetti', () => {
 
