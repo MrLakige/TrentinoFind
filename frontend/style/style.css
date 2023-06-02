@@ -1,62 +1,118 @@
-body {
-    background-color: #ffffff;
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    color: #00cc00;
-    text-align: center;
-  }
-  
-  form {
-    margin-top: 20px;
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #00cc00;
-    border-radius: 4px;
-  }
-  
-  input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #00cc00;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #008800;
-  }
-  
-  .error-message {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  .link {
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  .link a {
-    color: #00cc00;
-    text-decoration: none;
-  }
-  
-  .link a:hover {
-    text-decoration: underline;
-  }
-  
+:root {
+        --primary-100: #EE6C4D;
+        --primary-200: #cc4f34;
+        --primary-300: #7f0000;
+        --accent-100: #F7D1B3;
+        --accent-200: #927156;
+        --text-100: #333333;
+        --text-200: #5c5c5c;
+        --bg-100: #f4fdfd;
+        --bg-200: #eaf3f3;
+        --bg-300: #c1caca;
+      }
+      
+      /* Colore di sfondo del body */
+      body {
+        background-color: var(--bg-100);
+      }
+      
+      /* Colore del testo principale */
+      h1, h2, p, label {
+        color: var(--text-100);
+      }
+      
+      /* Colore dei link */
+      a {
+        color: var(--primary-200);
+        text-decoration: none;
+      }
+      
+      a:hover {
+        text-decoration: underline;
+      }
+      
+      /* Altri stili specifici possono essere aggiunti qui utilizzando le variabili dei colori */
+      
+      /* Media query per schermi con larghezza >= 1224px */
+      @media screen and (min-width: 1224px) {
+        body {
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-attachment: fixed;
+          background-color: var(--bg-100);
+        }
+      
+        h1 {
+          font-size: 300%;
+          font-family: verdana;
+          font-weight: bold;
+          position: center;
+          top: 0%;
+          text-shadow: 3px 3px black;
+          color: var(--primary-100);
+        }
+      
+        h2 {
+          font-size: 300%;
+          font-family: verdana;
+          font-weight: bold;
+          position: absolute;
+          top: 16%;
+          left: 50%;
+          text-shadow: 3px 3px black;
+          color: lightblue;
+        }
+      
+        /* CSS menu */
+        #nav {
+          background-color: transparent;
+          width: 50%;
+          position: absolute;
+          top: 5%;
+          left: 35%;
+          border-style: solid;
+          border-width: 4px;
+          border-color: red;
+          box-shadow: 3px 3px black;
+          background-color: black;
+          opacity: 0.8;
+        }
+      
+        #nav ul li {
+          list-style-type: none;
+          display: inline;
+        }
+      
+        #nav a {
+          color: #FFFF;
+          padding: 15px 50px;
+          display: inline-block;
+          font-weight: bold;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-family: arial;
+          text-shadow: 3px 3px black;
+        }
+      
+        #nav a:hover {
+          color: yellow;
+        }
+      
+        /* CSS testo principale */
+        #testo {
+          color: azure;
+          font-weight: bold;
+          font-family: monospace;
+          font-size: 170%;
+          position: absolute;
+          top: 40%;
+          left: 27%;
+          height: 37%;
+          width: 67%;
+          text-align: center;
+          text-shadow: 3px 3px black;
+          background-color: black;
+          opacity: 0.8;
+        }
+
+}
