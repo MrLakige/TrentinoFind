@@ -1,6 +1,8 @@
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const log = require('../../logger');
+
 
 //Creazione dello schema giocatore
 const schemaGiocatore = new Schema({
@@ -13,7 +15,8 @@ const schemaGiocatore = new Schema({
 const modelloGiocatore = mongoose.model('Giocatore', schemaGiocatore);
 
 modelloGiocatore.createCollection().then(function(collection) {
-  console.log('Collection Giocatore is created!');
+  //console.log('Collection Giocatore is created!');
+  log.event('Collection Giocatore is created!');
 });
 
 module.exports = modelloGiocatore;

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const log = require('../../logger');
+
 
 //Creazione dello schema oggetto
 const schemaOggetto = new Schema({
@@ -23,7 +25,8 @@ const schemaOggetto = new Schema({
 const modelloOggetto = mongoose.model('Oggetto', schemaOggetto);
 
 modelloOggetto.createCollection().then(function(collection) {
-  console.log('Collection Oggetto is created!');
+  //console.log('Collection Oggetto is created!');
+  log.event('Collection Oggetto is created!');
 });
 
 module.exports = modelloOggetto;

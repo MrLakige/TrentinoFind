@@ -3,6 +3,7 @@ const router = express.Router();
 const modelloGiocatore = require('./models/schemaGiocatore'); // get our mongoose model
 const modelloUtente = require('./models/schemaUtente');
 const Utente = require("./utenti");
+const log = require('../logger');
 
 class Giocatore extends Utente{
     giocatoreDB
@@ -121,7 +122,8 @@ router.put('/:id', async (req, res) => {
             })
         }
     }catch(error){
-        console.log(error)
+        //console.log(error)
+        log.error(error);
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
     }
@@ -137,14 +139,17 @@ router.delete('/:id', async (req, res) => {
         //Poi da mattere un metodo della classe?
         let giocatoreDB = await modelloGiocatore.findByIdAndDelete(giocatoreId);
         let utenteDB = await modelloUtente.findByIdAndDelete(giocatoreDB.idUser);
-        console.log(giocatoreDB);
-        console.log(utenteDB);
+        //console.log(giocatoreDB);
+        log.event(giocatoreDB);
+        //console.log(utenteDB);
+        log.event(utenteDB);
         if(!giocatoreDB){ //Il giocarore specificato non esiste
             res.status(400).json("ID non valido");
         }else{
             res.status(200).json("Rimozione del giocatore avvenuta con successo");
         }
     }catch(error){
+        log.warning(error);
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
     }

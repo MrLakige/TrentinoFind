@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const log = require('../../logger');
+
 
 const schemaUtente = new Schema({
     email: String,
@@ -15,7 +17,8 @@ const schemaUtente = new Schema({
 const modelloUtente = mongoose.model('Utente', schemaUtente);
 
 modelloUtente.createCollection().then(function(collection) {
-  console.log('Collection Utente is created!');
+  //console.log('Collection Utente is created!');
+  log.event('Collection Utente is created!');
 });
 
 module.exports = modelloUtente;

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const log = require('../logger');
 
 const modelloUtente = require('./models/schemaUtente');
 const emailValidator = require('deep-email-validator');
