@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const log = require('../logger');
 
 const modelloOggetto = require('./models/schemaOggetto');
 
@@ -60,6 +61,7 @@ router.post('', async (req, res) => {
             res.status(201).send("La pubblicazione dell'oggetto è stato effettuata con successo");
         }
     } catch  (error){
+        log.warning(error);
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
     }    

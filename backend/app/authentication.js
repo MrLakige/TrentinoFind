@@ -3,13 +3,14 @@ const router = express.Router();
 const modelloUtente = require('./models/schemaUtente.js'); // get our mongoose model
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const crypto = require('crypto');
+const log = require('../logger');
 
 
 // ---------------------------------------------------------
 // route to authenticate and get a new token
 // ---------------------------------------------------------
 router.post('', async function(req, res) {
-	console.log("checking credentials");
+	//console.log("checking credentials");
 	try {
 		// find the user
 		let user = await modelloUtente.findOne({
@@ -46,8 +47,9 @@ router.post('', async function(req, res) {
 		//var token = jwt.sign(payload, process.env.SUPER_SECRET, options);
 		var token = jwt.sign(payload, 'supersecretkey', options);
 
-		console.log('email:'+user.email+'\npassword: '+user.password+'\nroulo:'+user.ruolo+'\nuser id:'+user._id);
-		
+		//console.log('email:'+user.email+'\npassword: '+user.password+'\nroulo:'+user.ruolo+'\nuser id:'+user._id);
+		log.event('email:'+user.email+'\npassword: '+user.password+'\nroulo:'+user.ruolo+'\nuser id:'+user._id);
+
 		// query per trovare il tipo
 		switch(user.ruolo){
 			case 'Giocatore':{	
@@ -93,7 +95,8 @@ router.post('', async function(req, res) {
 		}
 		return;
     } catch (error) {
-        console.error(error);
+        //console.error(error);
+		log.error(error);
 		res.status(502);
         res.json({ success: false, message: 'Server error' });
 		return;

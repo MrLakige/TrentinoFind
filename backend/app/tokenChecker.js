@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+const log = require('../logger');
+
 
 const tokenChecker = function(req, res, next) {
 	

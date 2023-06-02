@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const modelloOggetto = require('./models/schemaOggetto');
 const modelloGiocatore = require('./models/schemaGiocatore');
+const log = require('../logger');
 
 class Oggetto{
     giocatoreDB
@@ -131,6 +132,7 @@ router.post('', async (req, res) => {
             })
         }
     } catch  (error){
+        log.warning(error);
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
     }   
