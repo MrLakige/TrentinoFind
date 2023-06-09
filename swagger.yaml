@@ -309,7 +309,20 @@ paths:
         '401':
           description: Non autorizzato
 
-  /oggetti:
+  /oggettiMappa:
+    get:
+        description: >-
+          Ottiene gli oggetti nascosti che fanno parte della mappa.
+        summary: Ottiene gli oggetti nascosti che fanno parte della mappa.
+        responses:
+          '200':
+            description: 'Collezione di oggetti'
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Oggetto'
     post:
       tags:
         - oggetto
@@ -338,7 +351,7 @@ paths:
                 type: string
                 description: Descrizione dell'errore in fase di inserimento oggetto
           
-  /oggetti/{ID}:      
+  /oggettiMappa/{ID}:      
      get:
       tags:
         - oggetto
@@ -364,7 +377,7 @@ paths:
           description: ID dell'oggetto non valido
         '401':
           description: Non autorizzato
-          
+
   /oggettiTrovati:
     post:
       description: >-
