@@ -1,3 +1,5 @@
 backend/node_modules
 backend/logs/*
-backend/logs/
+backend/logs/error.txt
+backend/logs/event.txt
+backend/logs/warning.txt
