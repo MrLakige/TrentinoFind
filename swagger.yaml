@@ -203,7 +203,7 @@ paths:
           description: Non autorizzato
     delete:
       tags:
-        - amministratore
+        - moderatore
       parameters:
         - name: ID
           in: path
@@ -311,20 +311,22 @@ paths:
 
   /oggettiMappa:
     get:
-        description: >-
-          Ottiene gli oggetti nascosti che fanno parte della mappa.
-        summary: Ottiene gli oggetti nascosti che fanno parte della mappa.
-        responses:
-          '200':
-            description: 'Collezione di oggetti'
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/OggettoMappa'
-          '401':
-            description: Non autorizzato
+      tags:
+        - oggetto
+      description: >-
+        Ottiene gli oggetti nascosti che fanno parte della mappa.
+      summary: Ottiene gli oggetti nascosti che fanno parte della mappa.
+      responses:
+        '200':
+          description: 'Collezione di oggetti'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OggettoMappa'
+        '401':
+          description: Non autorizzato
 
   /oggettiMappa/{ID}:      
     get:
@@ -427,8 +429,9 @@ paths:
   /oggettiPubblicati:
     post:
       description: >-
-        Permette di pubblicare un oggetto all'interno del sistema, in particolare
-        tale oggetto diventerà disponibile all'interno della mappa.
+        Permette di pubblicare un oggetto all'interno del sistema, 
+        in particolare tale oggetto diventerà disponibile all'interno 
+        della mappa.
       summary: Pubblicare un oggetto all'interno del sistema.
       requestBody:
         content:
@@ -440,7 +443,7 @@ paths:
         '200':
           description: La pubblicazione dell'oggetto è stato effettuata con successo
         '400':
-          description: 'Non è stato possibile pubblicare l'oggetto'
+          description: "Non è stato possibile pubblicare l'oggetto"
           content:
             application/json:
               schema:
@@ -448,9 +451,12 @@ paths:
                 description: Descrizione dell'errore
         '401':
           description: Non autorizzato
- 
+
+
   /commenti:
     post:
+      tags:
+        - commenti
       description: >-
         Crea una nuovo commento su un oggetto da parte di un 
         giocatore all'interno del sistema.
@@ -477,7 +483,7 @@ paths:
   /commenti/{ID}:
     delete:
       tags:
-        - moderatore
+        - commenti
       parameters:
         - name: ID
           in: path
@@ -494,7 +500,8 @@ paths:
           description: Errore nella cancellazione del commento
         '401':
           description: Non autorizzato
-                  
+ 
+
 components:
   schemas:
     Giocatore:
@@ -701,7 +708,7 @@ components:
       properties:
         idOggetto:
           type: string
-          description: 'ID dell'oggetto da validare'
+          description: "ID dell'oggetto da validare"
 
     Commento:
       type: object
