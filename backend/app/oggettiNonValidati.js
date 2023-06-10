@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const modelloOggetto = require('./models/schemaOggetto');
 const modelloGiocatore = require('./models/schemaGiocatore');
-const log = require('../logger');
 
 class Oggetto{
     giocatoreDB
@@ -89,32 +88,37 @@ class Oggetto{
     }
 }
 
-function filtraInformazioni(oggettoDB){
-    oggettoDB = [oggettoDB].map( (oggettoDB) => {
+function filtraInformazioniUI(oggettoDB){
+    oggettoDB = oggettoDB.map( (oggettoDB) => {
         return {
+            idOggetto: oggettoDB.id,
+            idGiocatore: oggettoDB.idGiocatore,
             location: oggettoDB.location,
             title: oggettoDB.title,
             description: oggettoDB.description,
             dimension: oggettoDB.dimension,
-            difficulty: oggettoDB.difficulty
+            difficulty: oggettoDB.difficulty,
+            codiceDiValidazione: oggettoDB.codiceDiValidazione
         };
     });
     return oggettoDB;
 }
 
-//GET /api/v1/oggetti/{ID}
-router.get('/:id', async (req, res) => {
-    // cerco l'oggetto in base all'ID specificato nella richiesta
-    let oggettoDB = await modelloOggetto.findById(req.params.id);
-    // verifico se è stato trovato l'oggetto
-    if(!oggettoDB){ 
-        res.status(400).json("ID dell'oggetto non valido");
+//GET /api/v1/oggettiNonValidati
+router.get('', async (req, res) => {
+    // cerco tutti gli oggetti non validati
+    let oggettoDB = await modelloOggetto.find({validated: false});
+    // verifico se sono stati trovati oggetti
+    if(!oggettoDB){
+        res.status(400).json("Nessun oggetto inserito da validare");
     }else{
-        res.status(200).json(filtraInformazioni(oggettoDB));
+        res.status(200).json(filtraInformazioniUI(oggettoDB));
     }
 });
 
-//POST /api/v1/oggetti
+
+
+//POST /api/v1/oggettiNonValidati
 router.post('', async (req, res) => {
     // istanzio in locale un oggetto in base ai parametri ricevuti
     let oObject = new Oggetto(req.body.IDgiocatore, req.body.location, 
@@ -122,7 +126,7 @@ router.post('', async (req, res) => {
         req.body.difficulty, req.body.codiceDiValidazione);
     try{
         const {isValid, status} = await oObject.inserisciOggetto();
-        if (isValid){ 
+        if (isValid){
             let oggettoId = oObject.oggettoDB.id;
             res.location("/api/v1/oggetti/" + oggettoId).status(201)
             .send("Inserimento di un nuovo oggetto avvenuto con successo. Link nel Location header");
@@ -132,11 +136,11 @@ router.post('', async (req, res) => {
             })
         }
     } catch  (error){
-        log.warning(error);
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
-    }   
+    }  
 });
+
 
 
 module.exports = router;

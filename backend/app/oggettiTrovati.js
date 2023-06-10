@@ -55,12 +55,29 @@ class OggettoTrovato{
          * In tal caso se siamo in condizione di validità i campi
          * this.giocatoreDB e this.oggettoDB sono inizializzati
          */
+        if( this.oggettoDB.validated == false ){
+            status = "L'oggetto non è validato"
+            isValid = false;
+            return {isValid, status};
+        } 
         if( this.codiceDiValidazione != this.oggettoDB.codiceDiValidazione ){
             status = "Codice di validazione errato"
             isValid = false;
             return {isValid, status};
         } 
         let idOggettiTrovatiDB = this.giocatoreDB.idOggettiTrovati;
+        /**
+         * Verifico se nell'array è gia presente l'id dell'oggetto
+         * che è stato trovato
+         */
+        
+        idOggettiTrovatiDB.forEach(element => {
+            if( element == this.IDoggetto){
+                status = "Questo oggetto è stato già trovato"
+                isValid = false;
+            }
+        });
+        if(!isValid) return {isValid, status};
         idOggettiTrovatiDB.push(this.IDoggetto);
         /**
          * [options.overwrite=false] «Boolean» By default, if you don't include any update operators 

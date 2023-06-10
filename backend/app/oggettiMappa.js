@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 const modelloOggetto = require('./models/schemaOggetto');
 
-function filtraOggetto(oggettoDB){
+
+function filtraOggettoUI(oggettoDB){
+    /**
+     * Qui mi aspetto che oggettoDB è formato da un solo elemento
+     */
+    oggettoDB = [oggettoDB];
     oggettoDB = oggettoDB.map( (oggettoDB) => {
         return {
             location: oggettoDB.location,
@@ -15,7 +20,11 @@ function filtraOggetto(oggettoDB){
     return oggettoDB;
 }
 
-function filtraOggettiMappa(oggettoDB){
+function filtraOggettiMappaUI(oggettoDB){
+    /**
+     * Qui mi aspetto che oggettoDB è formato da uno o
+     * più elementi
+     */
     oggettoDB = oggettoDB.map( (oggettoDB) => {
         return {
             idOggetto: oggettoDB.id,
@@ -33,7 +42,7 @@ router.get('', async (req, res) => {
     if(!oggettoDB){ 
         res.status(400).json("Nessun oggetto presente nella mappa");
     }else{
-        res.status(200).json(filtraOggettiMappa(oggettoDB));
+        res.status(200).json(filtraOggettiMappaUI(oggettoDB));
     }
 });
 
@@ -46,10 +55,10 @@ router.get('/:id', async (req, res) => {
         res.status(400).json("ID dell'oggetto non valido");
         // verifico se l'oggetto è stato validato
     }else{
-        if(oggettoDB.validate != true){
+        if(oggettoDB.validate == false){
             res.status(400).json("Oggetto non validato");
         }else{
-            res.status(200).json(filtraOggetto(oggettoDB));
+            res.status(200).json(filtraOggettoUI(oggettoDB));
         }
     }
 

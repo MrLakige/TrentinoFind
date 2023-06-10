@@ -6,7 +6,7 @@ const log = require('../logger');
 //Routing://
 const giocatori = require('./giocatori.js');
 const moderatori = require('./moderatori.js');
-const oggetti = require('./oggetti.js');
+const oggettiNonValidati = require('./oggettiNonValidati.js');
 const oggettiMappa = require('./oggettiMappa.js');
 const oggettiTrovati = require('./oggettiTrovati.js');
 const oggettiPubblicati = require('./oggettiPubblicati.js');
@@ -41,7 +41,7 @@ try {
 
     app.use('/api/v1/giocatori', giocatori);
     app.use('/api/v1/moderatori', moderatori);
-    app.use('/api/v1/oggetti', oggetti);
+    app.use('/api/v1/oggettiNonValidati', oggettiNonValidati);
     app.use('/api/v1/oggettiMappa', oggettiMappa);
     app.use('/api/v1/oggettiTrovati', oggettiTrovati);
     app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);

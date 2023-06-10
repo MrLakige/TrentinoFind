@@ -33,7 +33,7 @@ class OggettoPubblicato{
         }
         return {isValid, status};
     }
-    async inserisciOggettoPubblicato(){
+    async pubblicaOggetto(){
         let {isValid, status} = await this.verificaOggettoPubblicato()
         if(!isValid) return {isValid, status};
         /**
@@ -54,7 +54,7 @@ router.post('', async (req, res) => {
     let oPObject = new OggettoPubblicato(req.body.oggetto);
     
     try{
-        let {isValid, status} = await oPObject.inserisciOggettoPubblicato();
+        let {isValid, status} = await oPObject.pubblicaOggetto();
         if(!isValid){ 
             res.status(400).json(status);
         }else{
