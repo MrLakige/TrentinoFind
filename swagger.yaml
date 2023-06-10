@@ -386,6 +386,8 @@ paths:
         '401':
           description: Non autorizzato
     get:
+      tags:
+          - oggetto
       description: >-
         Ottiene tutti gli oggetti non validati.
       summary: Ottiene tutti gli oggetti non validati.
@@ -403,6 +405,8 @@ paths:
 
   /oggettiTrovati:
     post:
+      tags:
+        - oggetto
       description: >-
         Crea un nuovo ritrovamento di un oggetto da parte di un 
         giocatore all'interno del sistema.
@@ -428,11 +432,13 @@ paths:
 
   /oggettiPubblicati:
     post:
+      tags:
+        - oggetto
       description: >-
         Permette di pubblicare un oggetto all'interno del sistema, 
         in particolare tale oggetto diventerà disponibile all'interno 
         della mappa.
-      summary: Pubblicare un oggetto all'interno del sistema.
+      summary: Crea una pubblicazione di un oggetto all'interno del sistema.
       requestBody:
         content:
           application/json:
