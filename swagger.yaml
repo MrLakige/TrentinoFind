@@ -424,7 +424,7 @@ paths:
         '401':
           description: Non autorizzato
 
-  /oggettiPubblicato:
+  /oggettiPubblicati:
     post:
       description: >-
         Permette di pubblicare un oggetto all'interno del sistema, in particolare
