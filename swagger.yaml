@@ -322,7 +322,7 @@ paths:
                 schema:
                   type: array
                   items:
-                    $ref: '#/components/schemas/Oggetto'
+                    $ref: '#/components/schemas/OggettoMappa'
           '401':
             description: Non autorizzato
 
@@ -601,17 +601,12 @@ components:
     Oggetto:
       type: object
       required:
-        - IDgiocatore
         - location
         - title
         - description
         - dimension
         - difficulty
-        - codiceDiValidazione
       properties:
-        IDgiocatore:
-          type: string
-          description: "Il giocatore che ha inserito l'oggetto"
         location:
           type: string
           description: "La posizione dell'oggetto"
@@ -627,9 +622,20 @@ components:
         difficulty: 
           type: string
           description: "La difficoltà dell'oggetto"    
-        codiceDiValidazione: 
+
+    OggettoMappa:
+      type: object
+      required:
+        - idOggetto
+        - location
+      properties:
+        idOggetto:
           type: string
-          description: "Il codice di validazione per l'oggetto"    
+          description: "L'id che identifica l'oggetto all'interno del sistema"
+        location:
+          type: string
+          description: "La posizione dell'oggetto"
+
     
     OggettoTrovato:
       type: object

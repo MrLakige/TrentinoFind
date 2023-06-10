@@ -9,7 +9,7 @@ const URI_LUCA = "mongodb+srv://lucacaccavale:TrentinoFindPassword@cluster0.yusn
 log.init();
 //La seguente istruzione permette di ignorare un warning di mongoose
 mongoose.set('strictQuery', true);
-var db = mongoose.connect(URI_MICHELE, {useNewUrlParser: true, useUnifiedTopology: true})
+var db = mongoose.connect(URI_LUCA, {useNewUrlParser: true, useUnifiedTopology: true})
 .then ( () => {
 
     //console.log("Connected to Database");

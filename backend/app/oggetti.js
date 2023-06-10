@@ -45,7 +45,7 @@ class Oggetto{
         }
         return {isValid, status};
     }
-    async inserisciOggettoTrovato(){
+    async inserisciOggetto(){
         let {isValid, status} = await this.verificaOggettoInserito()
         if(!isValid) return {isValid, status};
         /**
@@ -121,7 +121,7 @@ router.post('', async (req, res) => {
         req.body.title, req.body.description, req.body.dimension, 
         req.body.difficulty, req.body.codiceDiValidazione);
     try{
-        const {isValid, status} = await oObject.inserisciOggettoTrovato();
+        const {isValid, status} = await oObject.inserisciOggetto();
         if (isValid){ 
             let oggettoId = oObject.oggettoDB.id;
             res.location("/api/v1/oggetti/" + oggettoId).status(201)
