@@ -2,8 +2,8 @@
 // to complete for testing
 
 const request = require('supertest');
-const app = require('./app');
-const log = require('../logger');
+const app = require('../app');
+const log = require('../../logger');
 
 describe('GET /api/v1/oggetti', () => {
 
@@ -13,7 +13,7 @@ describe('GET /api/v1/oggetti', () => {
   let oggettoSpyFindById;
 
   beforeAll( () => {
-    const oggetto = require('./models/schemaOggetto');
+    const oggetto = require('../models/schemaOggetto');
     oggettoSpy = jest.spyOn(oggetto, 'find').mockImplementation((criterias) => {
       return [{
         location: "46.45857997953086, 11.271157834960782",

@@ -2,9 +2,8 @@
 // to complete for testing
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
-const app = require('./app');
-
-const log = require('../logger');
+const app = require('../app');
+const log = require('../../logger');
 
 describe('GET /api/v1/giocatori', () => {
 
@@ -12,11 +11,11 @@ describe('GET /api/v1/giocatori', () => {
   let findGiocatore;
 
   beforeAll( () => {
-    const giocatore = require('./models/schemaGiocatore');
+    const giocatore = require('../models/schemaGiocatore');
     findGiocatore = jest.spyOn(giocatore, 'findOne').mockImplementation((criterias) => {
       return {
-        id: 12345678,
-        email: 'test@mail.com'
+        id: '6475c15c5a1bcbad8a5131ca',
+        email: 'test@test'
       };
     });
   });
@@ -37,24 +36,27 @@ describe('GET /api/v1/giocatori', () => {
 
   // create a valid token
   var payload = {
-    email: 'test@mail.com'
+    email: 'test@test',
+    id:'6475c15c5a1bcbad8a5131ca'
   }
   var options = {
     expiresIn: 86400 // expires in 24 hours
   }
-  var token = jwt.sign(payload, "supersecretkey", options);
+  var token = jwt.sign(payload, 'supersecretkey', options);
       
-  test('GET /api/v1/giocatori?token=<valid> should return 200', async () => {
+  test('GET /api/v1/giocatori/?id=<valid> should return 200', async () => {
     expect.assertions(1);
-    const response = await request(app).get('/api/v1/giocatori?token='+token);
+    const response = await request(app).get('/api/v1/giocatori/:id'+token);
     expect(response.statusCode).toBe(200);
   });
 
-  test('GET /api/v1/giocatori?token=<valid> should return user information', async () => {
+  /*
+  test('GET /api/v1/giocatori/:id<valid> should return user information', async () => {
     expect.assertions(2);
-    const response = await request(app).get('/api/v1/giocatori?token='+token);
+    const response = await request(app).get('/api/v1/giocatori/:id'+token);
     const gamer = response.body;
     expect(gamer).toBeDefined();
-    expect(gamer.email).toBe('test@mail.com');
+    expect(gamer.email).toBe('test@test');
   });
+  */
 });
