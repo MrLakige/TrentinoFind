@@ -341,8 +341,8 @@ paths:
             type: integer
             format: int64
       description: >-
-        Ottiene le informazioni di un oggetto all'interno del sistema.
-      summary: Ottiene le informazioni di un oggetto.
+        Ottiene le informazioni di un oggetto nascosto.
+      summary: Ottiene le informazioni di un oggetto nascosto.
       responses:
         '200':
           description: Operazione avvenuta con successo
@@ -360,8 +360,8 @@ paths:
       tags:
         - oggetto
       description: >-
-        Crea un nuovo oggetto all'interno del sistema.
-      summary: Crea un nuovo oggetto.
+        Crea un nuovo oggetto non validato all'interno del sistema.
+      summary: Crea un nuovo oggetto non validato.
       requestBody:
         content:
           application/json:
@@ -389,8 +389,8 @@ paths:
       tags:
           - oggetto
       description: >-
-        Ottiene tutti gli oggetti non validati.
-      summary: Ottiene tutti gli oggetti non validati.
+        Ottiene le informazioi di tutti gli oggetti non validati prensenti nel sistema.
+      summary: Ottiene le informazioni di tutti gli oggetti non validati.
       responses:
         '200':
           description: 'Collezzione di oggetti'
@@ -408,9 +408,8 @@ paths:
       tags:
         - oggetto
       description: >-
-        Crea un nuovo ritrovamento di un oggetto da parte di un 
-        giocatore all'interno del sistema.
-      summary: Crea un nuovo ritrovamento di un oggetto da parte di un giocatore.
+        Crea un nuovo ritrovamento di un oggetto all'interno del sistema.
+      summary: Crea un nuovo ritrovamento di un oggetto.
       requestBody:
         content:
           application/json:
@@ -438,7 +437,7 @@ paths:
         Permette di pubblicare un oggetto all'interno del sistema, 
         in particolare tale oggetto diventerà disponibile all'interno 
         della mappa.
-      summary: Crea una pubblicazione di un oggetto all'interno del sistema.
+      summary: Crea una pubblicazione di un oggetto.
       requestBody:
         content:
           application/json:
