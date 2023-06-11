@@ -1,4 +1,5 @@
 backend/node_modules
+.env
 logs/*
 logs/error.txt
 logs/event.txt
