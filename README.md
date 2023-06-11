@@ -6,5 +6,5 @@ D3 user story: https://docs.google.com/document/d/1a_3OZPbdnCBdON2Up4VwBuKIDm6yi
    spread sheet: <br>
     description: In questo foglio di lavoro è presente il "Product Backlog" e i dettagli riguardo lo "Sprint #1 Backlog" <br>
     "https://docs.google.com/spreadsheets/d/1Q3ntwMbnz4UGaI5eQW87UfYakSoa2uqJmyk8HP1e8KQ/edit?usp=sharing <br>
-D3: https://docs.google.com/document/d/1gLtjXzjK29CINoVgKcR7Is9IecdfpCZNaaUn9GmtOnw/edit?usp=sharing
+D3: https://docs.google.com/document/d/1gLtjXzjK29CINoVgKcR7Is9IecdfpCZNaaUn9GmtOnw/edit?usp=sharing <br>
 D3 sprint2: https://docs.google.com/document/d/1NEUIIBy38qpbIIRhmuxt5IIjoZJrUHDuNPaF9iGbthw/edit?usp=sharing
