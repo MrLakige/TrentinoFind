@@ -76,6 +76,21 @@ class Commento{
     }
 }
 
+function filtraCommentoUI(commentoDB){
+    if(!Array.isArray(commentoDB)){
+        commentoDB = [commentoDB]
+    }
+    commentoDB = commentoDB.map( (commentoDB) => {
+        return {
+            idGiocatore: commentoDB.idGiocatore,
+            idOggetto: commentoDB.idOggetto,
+            data: commentoDB.data,
+            testo: commentoDB.testo
+        };
+    });
+    return commentoDB;
+}
+
 
 //POST /api/v1/commenti
 router.post('', async (req, res) => {
@@ -125,7 +140,7 @@ router.get('/:id/commenti', async (req, res) => {
             res.status(400).json("Non sono presenti commenti");
             return;
         }else{
-            res.status(200).json(commentoDB);
+            res.status(200).json(filtraCommentoUI(commentoDB));
         }
     } catch (error){
         res.status(400).json("Formato ID non valido");
