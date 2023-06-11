@@ -38,12 +38,14 @@ try {
 
     // app.use('api/v1/utente', utente);
 
-
+    
     app.use('/api/v1/giocatori', giocatori);
     app.use('/api/v1/moderatori', moderatori);
     app.use('/api/v1/oggettiNonValidati', oggettiNonValidati);
     app.use('/api/v1/oggettiMappa', oggettiMappa);
     app.use('/api/v1/oggettiTrovati', oggettiTrovati);
+    //Per far uso del path GET /api/v1/giocatori/:id/oggettiTrovati
+    app.use('/api/v1/giocatori', oggettiTrovati);
     app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
     app.use('/api/v1/commenti', commenti);
     // authenication:
@@ -56,6 +58,7 @@ try {
     });
 
 } catch (error) {
+    console.log(error)
     log.error(error);    
 }
 

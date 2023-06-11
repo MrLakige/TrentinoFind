@@ -90,7 +90,21 @@ class OggettoTrovato{
     }
 }
 
-
+function filtraOggettoUI(oggettoDB){
+    /**
+     * Qui mi aspetto che oggettoDB è formato da un solo elemento
+     */
+    oggettoDB = oggettoDB.map( (oggettoDB) => {
+        return {
+            location: oggettoDB.location,
+            title: oggettoDB.title,
+            description: oggettoDB.description,
+            dimension: oggettoDB.dimension,
+            difficulty: oggettoDB.difficulty
+        };
+    });
+    return oggettoDB;
+}
 
 //POST /api/v1/oggettiTrovati
 router.post('', async (req, res) => {
@@ -108,6 +122,20 @@ router.post('', async (req, res) => {
         // This catch CastError when giocatoreId cannot be casted to mongoose ObjectId
         res.status(400).json("Formato ID non valido");
     }    
+});
+
+//GET /api/v1/giocatori/:id/oggettiTrovati
+router.get('/:id/oggettiTrovati', async (req, res) => {
+    // Recupero tutti gli oggetti validati
+    console.log(req.baseUrl)
+    let oggettoDB = await modelloOggetto.find({idGiocatore: req.params.id});
+    console.log(oggettoDB)
+    // Verifico se sono stati recuperati oggetti
+    if(!oggettoDB){ 
+        res.status(400).json("Non sono ancora presenti oggetti trovati dal giocatore");
+    }else{
+        res.status(200).json(filtraOggettoUI(oggettoDB));
+    }
 });
 
 module.exports = router;

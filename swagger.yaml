@@ -428,6 +428,40 @@ paths:
                 description: Descrizione dell'errore
         '401':
           description: Non autorizzato
+          
+  /giocatori/{ID}/oggettiTrovati:
+    get:
+      tags:
+        - oggetto
+      parameters:
+        - name: ID
+          in: path
+          description: ID del giocatore
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: >-
+        Ottiene l'insieme degli oggetti che sono stati trovati dal giocatore.
+      summary: Ottiene gli oggetti che sono stati trovati dal giocatore.
+      responses:
+        '200':
+          description: 'Collezione di oggetti'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Oggetto'
+        '400':
+          description: 'Non sono ancora presenti oggetti trovati dal giocatore'
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore
+        '401':
+          description: Non autorizzato
 
   /oggettiPubblicati:
     post:
