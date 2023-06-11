@@ -71,7 +71,8 @@ class Commento{
             idGiocatore: this.idGiocatore,
             idOggetto: this.idOggetto,
             data: this.data,
-            testo: this.testo
+            testo: this.testo,
+            visualizzato: false
         }
     }
 }

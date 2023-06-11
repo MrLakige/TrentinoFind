@@ -12,6 +12,8 @@ const oggettiTrovati = require('./oggettiTrovati.js');
 const oggettiNascosti = require('./oggettiNascosti.js');
 const oggettiPubblicati = require('./oggettiPubblicati.js');
 const commenti = require('./commenti.js');
+const commentiVisualizzati = require('./commentiVisualizzati.js');
+const commentiNonVisualizzati = require('./commentiNonVisualizzati.js');
 const authentication = require('./authentication.js');
 //const tokenChecker = require('./tokenChecker.js');
 
@@ -53,6 +55,8 @@ try {
     app.use('/api/v1/oggettiTrovati', oggettiTrovati);
     app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
     app.use('/api/v1/commenti', commenti);
+    app.use('/api/v1/commentiVisualizzati', commentiVisualizzati);
+    app.use('/api/v1/commentiNonVisualizzati', commentiNonVisualizzati);
     // authenication:
     app.use('/api/v1/authentication', authentication);
 

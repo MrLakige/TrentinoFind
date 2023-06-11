@@ -552,6 +552,65 @@ paths:
         '401':
           description: Non autorizzato
 
+  /commentiNonVisualizzati:
+    get:
+      tags:
+        - commenti
+      description: >-
+        Ottiene l'insieme dei commenti che devono essere ancora visualizzati da un moderatore.
+      summary: Ottiene l'insieme dei commenti che devono essere ancora visualizzati.
+      responses:
+        '200':
+          description: 'Collezione di commenti'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Commento'
+        '400':
+          description: 'Non sono presenti commenti da visualizzare'
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore
+        '401':
+          description: Non autorizzato
+  
+  /commentiVisualizzati:
+    post:
+      tags:
+        - commenti
+      description: >-
+        Permette di effettuare la visualizzazione di un commento
+        non visualizzato associato ad un oggetto.
+      summary: Permette di effettuare la visualizzazione di un commento.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - idCommento
+              properties:
+                idCommento:
+                  type: string
+                  description: "ID del commento da visualizzare"
+        required: true
+      responses:
+        '200':
+          description: La visualizzazione del commento è stato effettuata con successo
+        '400':
+          description: "Non è stato possibile visualizzare il commento"
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore
+        '401':
+          description: Non autorizzato
+  
   /commenti/{ID}:
     delete:
       tags:

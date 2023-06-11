@@ -7,7 +7,8 @@ const schemaCommento = new Schema({
     idGiocatore: String,
     idOggetto: String,
     data: Date,
-    testo: String
+    testo: String,
+    visualizzato: Boolean
 });
 
 //Creazione del modello mongoose, con il quale interagire col database
