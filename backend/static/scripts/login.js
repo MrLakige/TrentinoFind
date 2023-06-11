@@ -1,3 +1,14 @@
+const localToken = localStorage.getItem('token');
+fetch('/api/v1/authentication',{
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
+}).then(response =>{
+
+}).catch(error =>{
+
+})
+
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent form submission
@@ -18,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('message').innerHTML = 'Login successful!';
             if(response.self){
               console.log(response.self);
+              // save token 
+              localStorage.setItem('token', response.token);
+              // redirect
               window.location.href=response.self+'?userId='+response.userId;
             }
           } else {

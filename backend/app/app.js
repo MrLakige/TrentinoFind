@@ -12,7 +12,7 @@ const oggettiTrovati = require('./oggettiTrovati.js');
 const oggettiPubblicati = require('./oggettiPubblicati.js');
 const commenti = require('./commenti.js');
 const authentication = require('./authentication.js');
-//const tokenChecker = require('./tokenChecker.js');
+const tokenChecker = require('./tokenChecker.js');
 
 try {  
     app.use(express.json());// parsing middelware json file
@@ -36,9 +36,18 @@ try {
     // uso il contenuto di static, ovvero una semplice interfaccia 
     app.use('/', express.static('static')); // expose also this folder
 
-    // app.use('api/v1/utente', utente);
+    // authenication:
+    app.use('/api/v1/authentication', authentication);
 
+    app.use('/api/v1/giocatori', tokenChecker);
+    //app.use('/api/v1/moderatori', moderatori);
+    //app.use('/api/v1/oggetti', oggetti);
+    //app.use('/api/v1/oggettiMappa', oggettiMappa);
+    //app.use('/api/v1/oggettiTrovati', oggettiTrovati);
+    //app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
+    //app.use('/api/v1/commenti', commenti);
 
+    /*
     app.use('/api/v1/giocatori', giocatori);
     app.use('/api/v1/moderatori', moderatori);
     app.use('/api/v1/oggetti', oggetti);
@@ -46,8 +55,8 @@ try {
     app.use('/api/v1/oggettiTrovati', oggettiTrovati);
     app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
     app.use('/api/v1/commenti', commenti);
-    // authenication:
-    app.use('/api/v1/authentication', authentication);
+    */
+  
 
     // Default 404 handler 
     app.use((req, res) => {
