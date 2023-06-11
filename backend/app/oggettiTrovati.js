@@ -91,9 +91,6 @@ class OggettoTrovato{
 }
 
 function filtraOggettoUI(oggettoDB){
-    /**
-     * Qui mi aspetto che oggettoDB è formato da un solo elemento
-     */
     oggettoDB = oggettoDB.map( (oggettoDB) => {
         return {
             location: oggettoDB.location,
@@ -126,15 +123,35 @@ router.post('', async (req, res) => {
 
 //GET /api/v1/giocatori/:id/oggettiTrovati
 router.get('/:id/oggettiTrovati', async (req, res) => {
-    // Recupero tutti gli oggetti validati
-    console.log(req.baseUrl)
-    let oggettoDB = await modelloOggetto.find({idGiocatore: req.params.id});
-    console.log(oggettoDB)
-    // Verifico se sono stati recuperati oggetti
-    if(!oggettoDB){ 
-        res.status(400).json("Non sono ancora presenti oggetti trovati dal giocatore");
-    }else{
-        res.status(200).json(filtraOggettoUI(oggettoDB));
+    try{
+        // Recupero le informazioni del giocatore 
+        let giocatoreDB = await modelloGiocatore.findById(req.params.id);
+        if(!giocatoreDB){
+            res.status(400).json("ID giocatore errato");
+            return;
+        }
+        // Recupero gli id degli oggetti trovati dal giocatore
+        let idOggettiTrovatiDB = giocatoreDB.idOggettiTrovati;
+        // Recupero le informazioni degli oggetti trovati dal giocatore
+        let oggettoDB
+        let nOggettiTrovati = idOggettiTrovatiDB.length;
+        if(nOggettiTrovati == 1){
+            oggettoDB = [await modelloOggetto.findById(idOggettiTrovatiDB[0])]
+        }else{
+            let i = 0;
+            oggettoDB = []
+            while( i < lenght){
+                oggettoDB.push(await modelloOggetto.findById(idOggettiTrovatiDB[i]))
+            }   
+        }
+        // Verifico se sono stati recuperati oggetti
+        if(!oggettoDB){ 
+            res.status(400).json("Non sono ancora presenti oggetti trovati dal giocatore");
+        }else{
+            res.status(200).json(filtraOggettoUI(oggettoDB));
+        }
+    } catch (error){
+        res.status(400).json("Formato ID non valido");
     }
 });
 

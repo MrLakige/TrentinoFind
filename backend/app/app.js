@@ -9,6 +9,7 @@ const moderatori = require('./moderatori.js');
 const oggettiNonValidati = require('./oggettiNonValidati.js');
 const oggettiMappa = require('./oggettiMappa.js');
 const oggettiTrovati = require('./oggettiTrovati.js');
+const oggettiNascosti = require('./oggettiNascosti.js');
 const oggettiPubblicati = require('./oggettiPubblicati.js');
 const commenti = require('./commenti.js');
 const authentication = require('./authentication.js');
@@ -40,12 +41,14 @@ try {
 
     
     app.use('/api/v1/giocatori', giocatori);
+    //Per far uso del path GET /api/v1/giocatori/:id/oggettiTrovati
+    app.use('/api/v1/giocatori', oggettiTrovati);
+    //Per far uso del path GET /api/v1/giocatori/:id/oggettiNascosti
+    app.use('/api/v1/giocatori', oggettiNascosti);
     app.use('/api/v1/moderatori', moderatori);
     app.use('/api/v1/oggettiNonValidati', oggettiNonValidati);
     app.use('/api/v1/oggettiMappa', oggettiMappa);
     app.use('/api/v1/oggettiTrovati', oggettiTrovati);
-    //Per far uso del path GET /api/v1/giocatori/:id/oggettiTrovati
-    app.use('/api/v1/giocatori', oggettiTrovati);
     app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
     app.use('/api/v1/commenti', commenti);
     // authenication:
