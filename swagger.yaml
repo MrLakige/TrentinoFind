@@ -497,7 +497,6 @@ paths:
         '401':
           description: Non autorizzato
 
-
   /oggettiPubblicati:
     post:
       tags:
@@ -525,7 +524,6 @@ paths:
                 description: Descrizione dell'errore
         '401':
           description: Non autorizzato
-
 
   /commenti:
     post:
@@ -574,7 +572,41 @@ paths:
           description: Errore nella cancellazione del commento
         '401':
           description: Non autorizzato
- 
+
+  /oggettiMappa/{ID}/commenti:
+    get:
+      tags:
+        - commenti
+      parameters:
+        - name: ID
+          in: path
+          description: ID dell'oggetto
+          required: true
+          schema:
+            type: integer
+            format: int64
+      description: >-
+        Ottiene l'insieme dei commenti associati ad un oggetto.
+      summary: Ottiene l'insieme dei commenti associati ad un oggetto.
+      responses:
+        '200':
+          description: 'Collezione di oggetti'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Commento'
+        '400':
+          description: 'Non sono presenti commenti'
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Descrizione dell'errore
+        '401':
+          description: Non autorizzato
+  
 
 components:
   schemas:

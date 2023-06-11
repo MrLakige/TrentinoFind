@@ -116,4 +116,20 @@ router.delete('/:id', async (req, res) => {
     }   
 });
 
+//GET /api/v1/oggettiMappa/:id/commenti
+router.get('/:id/commenti', async (req, res) => {
+    try{
+        // Recupero i commenti associato all'id dell'oggetto passato come parametro 
+        let commentoDB = await modelloCommento.find({idOggetto: req.params.id});
+        if(!commentoDB){
+            res.status(400).json("Non sono presenti commenti");
+            return;
+        }else{
+            res.status(200).json(commentoDB);
+        }
+    } catch (error){
+        res.status(400).json("Formato ID non valido");
+    }
+});
+
 module.exports = router;

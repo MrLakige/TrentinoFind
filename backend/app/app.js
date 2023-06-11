@@ -41,13 +41,15 @@ try {
 
     
     app.use('/api/v1/giocatori', giocatori);
-    //Per far uso del path GET /api/v1/giocatori/:id/oggettiTrovati
+    // Per far uso del path GET /api/v1/giocatori/:id/oggettiTrovati
     app.use('/api/v1/giocatori', oggettiTrovati);
-    //Per far uso del path GET /api/v1/giocatori/:id/oggettiNascosti
+    // Per far uso del path GET /api/v1/giocatori/:id/oggettiNascosti
     app.use('/api/v1/giocatori', oggettiNascosti);
     app.use('/api/v1/moderatori', moderatori);
-    app.use('/api/v1/oggettiNonValidati', oggettiNonValidati);
     app.use('/api/v1/oggettiMappa', oggettiMappa);
+    // Per far uso del path GET /api/v1/oggettiMappa/:id/commenti
+    app.use('/api/v1/oggettiMappa', commenti);
+    app.use('/api/v1/oggettiNonValidati', oggettiNonValidati);
     app.use('/api/v1/oggettiTrovati', oggettiTrovati);
     app.use('/api/v1/oggettiPubblicati', oggettiPubblicati);
     app.use('/api/v1/commenti', commenti);
