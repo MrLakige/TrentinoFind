@@ -1,6 +1,6 @@
 backend/node_modules
 .env
-logs/*
-logs/error.txt
-logs/event.txt
-logs/warning.txt
+backend/logs/*
+backend/logs/error.txt
+backend/logs/event.txt
+backend/logs/warning.txt

@@ -1,5 +1,7 @@
 const app = require('./app/app.js');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 const log=require('./logger.js');
 
 const port = 8080;
@@ -9,8 +11,7 @@ const URI_LUCA = "mongodb+srv://lucacaccavale:TrentinoFindPassword@cluster0.yusn
 log.init();
 //La seguente istruzione permette di ignorare un warning di mongoose
 mongoose.set('strictQuery', true);
-//var db = mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
-var db = mongoose.connect(URI_LUCA, {useNewUrlParser: true, useUnifiedTopology: true})
+var db = mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 .then ( () => {
 
     //console.log("Connected to Database");
