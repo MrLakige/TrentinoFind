@@ -89,6 +89,9 @@ class Oggetto{
 }
 
 function filtraInformazioniUI(oggettoDB){
+    if(!Array.isArray(oggettoDB)){
+        oggettoDB = [oggettoDB]
+    }
     oggettoDB = oggettoDB.map( (oggettoDB) => {
         return {
             idOggetto: oggettoDB.id,

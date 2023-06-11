@@ -7,7 +7,9 @@ function filtraOggettoUI(oggettoDB){
     /**
      * Qui mi aspetto che oggettoDB è formato da un solo elemento
      */
-    oggettoDB = [oggettoDB];
+    if(!Array.isArray(oggettoDB)){
+        oggettoDB = [oggettoDB]
+    }
     oggettoDB = oggettoDB.map( (oggettoDB) => {
         return {
             location: oggettoDB.location,
@@ -25,6 +27,9 @@ function filtraOggettiMappaUI(oggettoDB){
      * Qui mi aspetto che oggettoDB è formato da uno o
      * più elementi
      */
+    if(!Array.isArray(oggettoDB)){
+        oggettoDB = [oggettoDB]
+    }
     oggettoDB = oggettoDB.map( (oggettoDB) => {
         return {
             idOggetto: oggettoDB.id,
